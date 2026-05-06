@@ -88,6 +88,19 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        .history-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 5px;
+            width: 18px;
+            height: 18px;
+            background: #3b82f6;
+            border: 4px solid #fff;
+            border-radius: 50%;
+            z-index: 1;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -106,12 +119,8 @@
                     <a href="#products" class="text-gray-600 hover:text-blue-600 font-medium transition">제조물품</a>
                     <a href="#certs" class="text-gray-600 hover:text-blue-600 font-medium transition">인증현황</a>
                 </div>
-                <div class="flex items-center gap-3">
-                    <!-- 수동 연결 버튼은 로컬 에러시를 대비해 유지하되 스타일을 더 깔끔하게 수정 -->
-                    <label for="pdf-upload" id="upload-label" class="cursor-pointer bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-bold hover:bg-blue-200 transition">
-                        <i class="fas fa-link mr-1"></i> 파일 연결
-                    </label>
-                    <input type="file" id="pdf-upload" accept="application/pdf" class="hidden" onchange="handleFileUpload(event)">
+                <div class="flex items-center">
+                    <span class="text-xs text-blue-500 font-bold border border-blue-200 px-3 py-1 rounded-full bg-blue-50">공식 홈페이지</span>
                 </div>
             </div>
         </div>
@@ -126,71 +135,144 @@
         <div class="wave animate-wave opacity-30"></div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
+    <!-- 1. 회사개요 Section -->
+    <section id="about" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900">회사개요</h2>
+                <h2 class="text-3xl font-bold text-gray-900 italic">1. 회사개요</h2>
                 <div class="mt-4 w-16 h-1 bg-blue-600 mx-auto"></div>
             </div>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100">
-                    <div class="space-y-4">
-                        <div class="flex justify-between border-b border-gray-200 pb-2"><span class="text-gray-500">회사명</span><span class="font-bold">비에이텍(주)</span></div>
-                        <div class="flex justify-between border-b border-gray-200 pb-2"><span class="text-gray-500">대표이사</span><span class="font-bold">조세연</span></div>
-                        <div class="flex justify-between border-b border-gray-200 pb-2"><span class="text-gray-500">설립일</span><span class="font-bold">2010.11.01</span></div>
-                        <div class="pt-4"><p class="text-gray-500 text-sm mb-1">소재지</p><p class="text-gray-800 font-medium">강원 춘천시 퇴계공단2길 64</p></div>
+            
+            <div class="grid lg:grid-cols-3 gap-8 mb-16">
+                <div class="lg:col-span-1 space-y-6">
+                    <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100">
+                        <h4 class="font-bold text-blue-800 mb-4 flex items-center"><i class="fas fa-info-circle mr-2"></i> 기본정보</h4>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex justify-between"><span class="text-gray-500">회사명</span><span class="font-bold">비에이텍(주)</span></li>
+                            <li class="flex justify-between"><span class="text-gray-500">대표이사</span><span class="font-bold">조세연</span></li>
+                            <li class="flex justify-between"><span class="text-gray-500">설립일</span><span class="font-bold">2010.11.01</span></li>
+                            <li class="flex justify-between"><span class="text-gray-500">주요제품</span><span class="font-bold">모터펌프</span></li>
+                            <li class="pt-2 border-t border-blue-200">
+                                <p class="text-gray-500 mb-1">본사 및 공장</p>
+                                <p class="text-gray-800 leading-relaxed font-medium">강원 춘천시 퇴계공단2길 64<br>(퇴계제2농공단지내)</p>
+                            </li>
+                        </ul>
                     </div>
-                    <button onclick="openPdfModal(4)" class="mt-8 w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition flex items-center justify-center">
-                        <i class="far fa-file-pdf mr-2"></i> 지명원 상세 보기
-                    </button>
                 </div>
-                <div class="rounded-2xl overflow-hidden shadow-xl h-64">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000" class="w-full h-full object-cover" alt="[비에이텍 공장 전경]">
+
+                <div class="lg:col-span-2 grid md:grid-cols-2 gap-6">
+                    <div class="p-6 border border-gray-100 rounded-2xl bg-gray-50 shadow-sm">
+                        <h4 class="font-bold text-gray-900 mb-4 flex items-center text-blue-600"><i class="fas fa-bullseye mr-2"></i> 품질방침</h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>• 고객 만족의 품질 확보</li>
+                            <li>• 품질 경영 시스템의 구축</li>
+                            <li>• 품질 경쟁력 확보</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 border border-gray-100 rounded-2xl bg-gray-50 shadow-sm">
+                        <h4 class="font-bold text-gray-900 mb-4 flex items-center text-blue-600"><i class="fas fa-lightbulb mr-2"></i> 경영방침</h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>• 고객 감동 경영</li>
+                            <li>• 기술 혁신 경영</li>
+                            <li>• 인재 육성 경영</li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-2 p-6 border-2 border-blue-600 rounded-2xl bg-blue-600 text-white shadow-xl">
+                        <h4 class="font-bold mb-3 flex items-center"><i class="fas fa-eye mr-2"></i> 비전 (Vision)</h4>
+                        <p class="text-lg font-medium leading-relaxed">펌프 업계의 선두주자로서 깨끗한 환경을 만들고<br>기술 혁신을 통해 최고의 고객 가치를 창출합니다.</p>
+                    </div>
                 </div>
+            </div>
+
+            <div class="text-center">
+                <button onclick="openPdfModal(4)" class="inline-flex items-center bg-gray-900 text-white px-8 py-3 rounded-full font-bold hover:bg-black transition shadow-lg group">
+                    <i class="far fa-file-pdf mr-2 text-red-400"></i> 회사개요 상세 보기 (지명원 4p)
+                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- History Section -->
-    <section id="history" class="py-20 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-900">연혁</h2>
+    <!-- 2. 회사연혁 Section -->
+    <section id="history" class="py-24 bg-gray-50">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 italic">2. 회사연혁</h2>
                 <div class="mt-4 w-16 h-1 bg-blue-600 mx-auto"></div>
             </div>
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                <div class="flex items-center gap-6 mb-4">
-                    <span class="text-2xl font-bold text-blue-600">2010</span>
-                    <p class="text-gray-700">11월 비에이텍(주) 설립</p>
+
+            <div class="relative border-l-2 border-blue-200 ml-4 md:ml-0 md:left-1/2">
+                <div class="mb-12 relative md:w-1/2 md:pr-12 md:text-right md:left-[-50%]">
+                    <div class="history-item relative pl-8 md:pl-0">
+                        <span class="inline-block px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full mb-2">GROWTH</span>
+                        <h3 class="text-xl font-bold text-blue-700">2017 ~ 2019</h3>
+                        <ul class="mt-3 space-y-2 text-gray-600 text-sm">
+                            <li>• 2019.01 강원도지사 표창 수상</li>
+                            <li>• 2018.06 경영혁신형 중소기업(Main-Biz) 확인</li>
+                            <li>• 2017.11 춘천시 유망중소기업 선정</li>
+                        </ul>
+                    </div>
                 </div>
-                <button onclick="openPdfModal(6)" class="w-full py-3 text-blue-600 font-medium border border-blue-200 rounded-lg hover:bg-blue-50 transition">전체 연혁 확인 (6p)</button>
+
+                <div class="mb-12 relative md:w-1/2 md:pl-12 md:left-0">
+                    <div class="history-item relative pl-8 md:pl-0">
+                        <span class="inline-block px-3 py-1 bg-blue-400 text-white text-xs font-bold rounded-full mb-2">EXPANSION</span>
+                        <h3 class="text-xl font-bold text-blue-700">2014 ~ 2016</h3>
+                        <ul class="mt-3 space-y-2 text-gray-600 text-sm">
+                            <li>• 2016.12 펌프조합 직접생산확인증명 획득</li>
+                            <li>• 2015.05 ISO 9001 품질경영시스템 인증</li>
+                            <li>• 2014.03 공장등록 완료 및 설비 확충</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mb-4 relative md:w-1/2 md:pr-12 md:text-right md:left-[-50%]">
+                    <div class="history-item relative pl-8 md:pl-0">
+                        <span class="inline-block px-3 py-1 bg-gray-400 text-white text-xs font-bold rounded-full mb-2">FOUNDATION</span>
+                        <h3 class="text-xl font-bold text-blue-700">2010 ~ 2013</h3>
+                        <ul class="mt-3 space-y-2 text-gray-600 text-sm">
+                            <li>• 2010.11 비에이텍(주) 법인 설립</li>
+                            <li>• 펌프 제조 및 도매업 개시</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <button onclick="openPdfModal(6)" class="inline-flex items-center border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-blue-600 hover:text-white transition">
+                    <i class="far fa-clock mr-2"></i> 전체 연혁 타임라인 보기 (지명원 6p)
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Product Section -->
-    <section id="products" class="py-20 bg-white">
+    <!-- 3. 제조물품 Section -->
+    <section id="products" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900">제조물품</h2>
+                <h2 class="text-3xl font-bold text-gray-900 italic">3. 제조물품</h2>
                 <div class="mt-4 w-16 h-1 bg-blue-600 mx-auto"></div>
+                <p class="mt-6 text-gray-500 max-w-2xl mx-auto">고성능 모터펌프 및 특수 펌프 라인업을 통해<br>다양한 산업 현장의 요구를 충족시킵니다.</p>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="product-list"></div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4" id="product-list"></div>
+            
             <div class="mt-12 text-center">
-                <button onclick="openPdfModal(8)" class="bg-gray-800 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-gray-900 transition">제조물품 상세 카탈로그 (8p)</button>
+                <button onclick="openPdfModal(8)" class="bg-blue-600 text-white px-10 py-4 rounded-full font-bold shadow-xl hover:bg-blue-700 transition transform hover:-translate-y-1">
+                    제조물품 규격 및 상세 카탈로그 (8p)
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Certs Section -->
-    <section id="certs" class="py-20 bg-gray-50">
+    <!-- 5. 등록현황 Section -->
+    <section id="certs" class="py-24 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900">인증 및 등록현황</h2>
+                <h2 class="text-3xl font-bold text-gray-900 italic">5. 등록현황</h2>
                 <div class="mt-4 w-16 h-1 bg-blue-600 mx-auto"></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="cert-grid"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="cert-grid"></div>
         </div>
     </section>
 
@@ -199,35 +281,26 @@
         <div class="relative w-11/12 h-[90vh] bg-white rounded-lg shadow-2xl flex flex-col overflow-hidden">
             <div class="bg-gray-900 text-white px-6 py-4 flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <h3 class="font-bold text-lg">지명원 뷰어</h3>
-                    <span id="pdf-status-badge" class="text-xs bg-red-500 px-2 py-1 rounded text-white">연결 필요</span>
+                    <h3 class="font-bold text-lg">회사 지명원</h3>
                 </div>
                 <div class="flex items-center gap-6">
-                    <div class="flex items-center gap-2 bg-gray-800 rounded px-3 py-1">
+                    <div class="flex items-center gap-4 bg-gray-800 rounded px-4 py-1 text-sm font-mono">
                         <button onclick="prevPage()" class="hover:text-blue-400 transition"><i class="fas fa-chevron-left"></i></button>
-                        <span id="page-num-display" class="text-sm font-mono w-12 text-center">1 / 1</span>
+                        <span id="page-num-display">1 / 1</span>
                         <button onclick="nextPage()" class="hover:text-blue-400 transition"><i class="fas fa-chevron-right"></i></button>
                     </div>
-                    <button onclick="closePdfModal()" class="text-2xl hover:text-red-500 transition">&times;</button>
+                    <button onclick="closePdfModal()" class="text-2xl hover:text-red-500 transition px-2">&times;</button>
                 </div>
             </div>
             <div id="pdf-render-container" class="relative">
-                <!-- 로딩 오버레이 -->
-                <div id="loading-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-900 z-20" style="display:none;">
+                <div id="loading-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-900 z-20">
                     <div class="loading-spinner mb-4"></div>
-                    <p class="text-white">문서를 렌더링하고 있습니다...</p>
+                    <p class="text-white">문서 로딩 중...</p>
                 </div>
-                <!-- 에러/안내 오버레이 (로컬 보안 문제 발생 시) -->
                 <div id="error-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-800 z-10 text-white p-10 text-center" style="display:none;">
-                    <i class="fas fa-shield-alt text-5xl text-yellow-500 mb-6"></i>
-                    <h4 class="text-xl font-bold mb-2">보안 설정으로 인해 파일을 자동으로 열 수 없습니다.</h4>
-                    <p class="text-gray-400 mb-8 max-w-md mx-auto italic text-sm">
-                        브라우저는 사용자의 허락 없이 내 컴퓨터의 파일을 읽을 수 없습니다.<br>
-                        아래 버튼을 눌러 같은 폴더의 <b>ji.pdf</b> 파일을 선택해주세요.
-                    </p>
-                    <button onclick="document.getElementById('pdf-upload').click()" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-full font-bold transition shadow-lg">
-                        <i class="fas fa-file-pdf mr-2"></i> ji.pdf 파일 선택하기
-                    </button>
+                    <i class="fas fa-exclamation-triangle text-5xl text-yellow-500 mb-6"></i>
+                    <h4 class="text-xl font-bold mb-2">파일을 찾을 수 없습니다.</h4>
+                    <p class="text-gray-400">서버에 <b>ji.pdf</b> 파일이 있는지 확인해주세요.</p>
                 </div>
                 <canvas id="pdf-canvas"></canvas>
             </div>
@@ -235,17 +308,29 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-500 py-12 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-white font-bold mb-2 text-lg">비에이텍(주)</p>
-            <p class="text-sm mb-1">본사 및 공장: 강원 춘천시 퇴계공단2길 64 (퇴계제2농공단지내)</p>
-            <p class="text-sm mb-6">대표번호: 033-264-9243 | FAX: 033-251-5747</p>
-            <p class="text-xs">© 2024 비에이텍 주식회사. All Rights Reserved.</p>
+    <footer class="bg-gray-900 text-gray-500 py-16 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center border-b border-gray-800 pb-12 mb-8">
+                <div class="text-center md:text-left mb-8 md:mb-0">
+                    <p class="text-white font-bold text-2xl mb-2">비에이텍(주)</p>
+                    <p class="text-sm">깨끗한 물, 앞서가는 기술 - Blue Advanced Technology</p>
+                </div>
+                <div class="flex gap-12 text-sm">
+                    <div>
+                        <p class="text-gray-400 font-bold mb-2">Contact</p>
+                        <p class="text-gray-200">033-264-9243</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-400 font-bold mb-2">Location</p>
+                        <p class="text-gray-200">강원 춘천시 퇴계공단2길 64</p>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-xs">© 2024 비에이텍 주식회사. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
-        // PDF.js 기본 설정
         const pdfjsLib = window['pdfjs-dist/build/pdf'];
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
@@ -257,49 +342,29 @@
         const canvas = document.getElementById('pdf-canvas');
         const ctx = canvas.getContext('2d');
 
-        // 제품/인증 데이터 동적 렌더링
+        // 제품/인증 리스트 렌더링
         const products = ["다단벌류트펌프", "단단벌류트펌프", "양흡입벌류트펌프", "편흡입벌류트펌프", "정량펌프", "수중펌프", "오수펌프", "슬러지펌프", "심정용펌프", "전진공동펌프", "부스터펌프"];
-        const productsContainer = document.getElementById('product-list');
+        const pCont = document.getElementById('product-list');
         products.forEach(p => {
             const div = document.createElement('div');
-            div.className = 'bg-gray-50 p-4 rounded-xl border border-gray-100 text-center font-medium hover:bg-blue-50 hover:border-blue-200 transition cursor-default';
+            div.className = 'bg-white p-4 rounded-xl border border-gray-100 text-center font-bold text-sm shadow-sm hover:text-blue-600 transition';
             div.innerText = p;
-            productsContainer.appendChild(div);
+            pCont.appendChild(div);
         });
 
         const certs = [
             {n:"사업자등록증", p:12}, {n:"공장등록증", p:13}, {n:"산업단지 입주확인서", p:14},
-            {n:"직접생산확인증명서", p:15}, {n:"ISO 9001", p:16}, {n:"Main-Biz 확인서", p:17},
-            {n:"펌프조합 조합원증", p:18}, {n:"강원도지사 표창장", p:19}
+            {n:"직접생산확인증명서", p:15}, {n:"ISO 9001 인증", p:16}, {n:"Main-Biz 확인서", p:17},
+            {n:"조합원증", p:18}, {n:"강원도지사 표창", p:19}
         ];
-        const certGrid = document.getElementById('cert-grid');
+        const cGrid = document.getElementById('cert-grid');
         certs.forEach(c => {
             const div = document.createElement('div');
-            div.className = 'bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center hover:shadow-md transition cursor-pointer group';
+            div.className = 'bg-white p-5 rounded-xl border-l-4 border-blue-500 shadow-sm flex justify-between items-center hover:bg-blue-50 transition cursor-pointer group';
             div.onclick = () => openPdfModal(c.p);
-            div.innerHTML = `<span class="text-gray-700 font-medium group-hover:text-blue-600 transition">${c.n}</span><i class="far fa-file-pdf text-blue-400 group-hover:text-blue-600"></i>`;
-            certGrid.appendChild(div);
+            div.innerHTML = `<span class="font-bold text-gray-700 group-hover:text-blue-700 text-sm">${c.n}</span><i class="fas fa-file-pdf text-gray-300 group-hover:text-red-500"></i>`;
+            cGrid.appendChild(div);
         });
-
-        // 파일 업로드 처리
-        function handleFileUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                if (currentPdfUrl) URL.revokeObjectURL(currentPdfUrl);
-                currentPdfUrl = URL.createObjectURL(file);
-                
-                // UI 상태 업데이트
-                document.getElementById('pdf-status-badge').textContent = '연결됨';
-                document.getElementById('pdf-status-badge').classList.replace('bg-red-500', 'bg-green-500');
-                document.getElementById('upload-label').innerHTML = `<i class="fas fa-check mr-1"></i> 파일 연결됨`;
-                document.getElementById('upload-label').classList.replace('bg-blue-100', 'bg-green-100');
-                document.getElementById('upload-label').classList.replace('text-blue-700', 'text-green-700');
-                
-                initPdf(currentPdfUrl).then(success => {
-                    if (success) renderPage(pageNum);
-                });
-            }
-        }
 
         async function initPdf(url) {
             document.getElementById('loading-overlay').style.display = 'flex';
@@ -307,13 +372,13 @@
             try {
                 const loadingTask = pdfjsLib.getDocument(url);
                 pdfDoc = await loadingTask.promise;
+                document.getElementById('loading-overlay').style.display = 'none';
                 return true;
             } catch (err) {
-                console.error("PDF Init Error:", err);
+                console.error(err);
+                document.getElementById('loading-overlay').style.display = 'none';
                 document.getElementById('error-overlay').style.display = 'flex';
                 return false;
-            } finally {
-                document.getElementById('loading-overlay').style.display = 'none';
             }
         }
 
@@ -344,21 +409,9 @@
             document.body.style.overflow = 'hidden';
             
             if (!pdfDoc) {
-                // 서버 환경이거나 로컬에서 허용된 경우 자동 시도
-                try {
-                    const response = await fetch('ji.pdf');
-                    if (response.ok) {
-                        const blob = await response.blob();
-                        currentPdfUrl = URL.createObjectURL(blob);
-                        await initPdf(currentPdfUrl);
-                        renderPage(pageNum);
-                    } else {
-                        throw new Error();
-                    }
-                } catch (e) {
-                    // 보안상 실패 시 에러 화면 보여주기
-                    document.getElementById('error-overlay').style.display = 'flex';
-                }
+                // 깃허브 등 서버 환경에서 자동 로드
+                const success = await initPdf('ji.pdf');
+                if (success) renderPage(pageNum);
             } else {
                 renderPage(pageNum);
             }
