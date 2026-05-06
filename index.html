@@ -3,147 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>비에이텍(주) - 깨끗한 물을 향한 첨단 기술</title>
+    <title>비에이텍(주) | BATECH</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- PDF.js 라이브러리 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
         
         :root {
-            --primary-blue: #004aad;
-            --accent-blue: #3b82f6;
-            --dark-navy: #020617;
-            --sidebar-width: 280px;
+            --brand-blue: #0066FF;
+            --sidebar-bg: #0A0F1D;
         }
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
+            background-color: #F4F7FA;
+            color: #1A1F36;
             scroll-behavior: smooth;
-            background-color: #f8fafc;
-            overflow-x: hidden;
         }
 
-        /* 화려한 배경 애니메이션 (유체 흐름 효과) */
-        .liquid-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(120deg, #f0f9ff 0%, #e0f2fe 100%);
-            overflow: hidden;
-        }
-
-        .blob {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: linear-gradient(180deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.05) 100%);
-            filter: blur(80px);
-            border-radius: 50%;
-            z-index: -1;
-            animation: move 25s infinite alternate;
-        }
-
-        @keyframes move {
-            from { transform: translate(-10%, -10%); }
-            to { transform: translate(20%, 20%); }
-        }
-
-        /* 사이드바 스타일 */
+        /* 최적화된 사이드바 */
         .sidebar {
-            width: var(--sidebar-width);
+            width: 260px;
             height: 100vh;
             position: fixed;
             left: 0;
             top: 0;
-            background: rgba(15, 23, 42, 0.98);
-            backdrop-filter: blur(15px);
-            color: white;
-            z-index: 100;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--sidebar-bg);
+            z-index: 1000;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-right: 1px solid rgba(255,255,255,0.05);
         }
 
         .main-content {
-            margin-left: var(--sidebar-width);
+            margin-left: 260px;
             min-height: 100vh;
-            transition: all 0.4s ease;
         }
 
-        /* 히어로 섹션 */
-        .hero-section {
-            background: radial-gradient(circle at top right, #1e3a8a, #020617);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-mesh {
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        /* 고도화된 카드 디자인 */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border-color: var(--accent-blue);
-        }
-
-        /* 내비게이션 링크 애니메이션 */
-        .nav-link {
-            position: relative;
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0;
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-blue), transparent);
-            transition: width 0.3s ease;
-            z-index: -1;
-            opacity: 0.2;
-        }
-
-        .nav-link:hover::before, .nav-link.active::before {
-            width: 100%;
-        }
-
-        .nav-link.active {
-            color: #60a5fa;
-            font-weight: 700;
-        }
-
-        /* 연혁 타임라인 아이콘 */
-        .history-circle {
-            width: 20px;
-            height: 20px;
+        /* 하이테크 스타일 카드 */
+        .tech-card {
             background: white;
-            border: 4px solid var(--accent-blue);
-            border-radius: 50%;
-            position: absolute;
-            left: -11px;
-            top: 8px;
-            z-index: 10;
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid #E5E9F0;
+            transition: all 0.2s ease;
+        }
+
+        .tech-card:hover {
+            border-color: var(--brand-blue);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.08);
+            transform: translateY(-4px);
+        }
+
+        /* 내비게이션 활성화 상태 */
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            margin: 0.25rem 1rem;
+            border-radius: 12px;
+            color: #94A3B8;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(0, 102, 255, 0.1);
+            color: #60A5FA;
+        }
+
+        /* PDF 뷰어 모달 최적화 */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            padding: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pdf-container {
+            width: 100%;
+            max-width: 1000px;
+            height: 90vh;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 애니메이션 효과 제한 (성능 우선) */
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 1024px) {
@@ -155,411 +115,299 @@
 </head>
 <body class="antialiased">
 
-    <div class="liquid-bg">
-        <div class="blob" style="top: -10%; left: -10%;"></div>
-        <div class="blob" style="bottom: -10%; right: -10%; animation-delay: -5s;"></div>
-    </div>
-
-    <!-- Mobile Menu Button -->
-    <button onclick="toggleSidebar()" class="lg:hidden fixed top-6 right-6 z-[110] bg-blue-600 text-white w-14 h-14 rounded-2xl shadow-2xl flex items-center justify-center text-xl">
-        <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Sidebar Navigation -->
+    <!-- Sidebar -->
     <aside id="sidebar" class="sidebar flex flex-col">
-        <div class="p-10">
-            <div class="flex items-center gap-3 mb-2">
-                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/50">
-                    <i class="fas fa-water text-white"></i>
-                </div>
-                <h1 class="text-3xl font-black tracking-tighter">BATECH</h1>
-            </div>
-            <p class="text-[10px] text-gray-500 font-bold tracking-[0.3em] uppercase">Blue Advanced Technology</p>
+        <div class="p-8">
+            <h1 class="text-white text-2xl font-black tracking-tighter flex items-center gap-2">
+                <span class="text-blue-500">BA</span>TECH
+            </h1>
+            <p class="text-[10px] text-gray-500 font-bold tracking-widest mt-1 uppercase">Advanced Pumping</p>
         </div>
 
-        <nav class="flex-1 px-4 space-y-1">
-            <a href="#home" class="nav-link flex items-center px-8 py-5 rounded-2xl text-gray-400">
-                <i class="fas fa-th-large mr-4 w-5"></i> <span class="tracking-tight">DASHBOARD</span>
-            </a>
-            <a href="#about" class="nav-link flex items-center px-8 py-5 rounded-2xl text-gray-400">
-                <i class="fas fa-info-circle mr-4 w-5"></i> <span class="tracking-tight">ABOUT</span>
-            </a>
-            <a href="#history" class="nav-link flex items-center px-8 py-5 rounded-2xl text-gray-400">
-                <i class="fas fa-stream mr-4 w-5"></i> <span class="tracking-tight">HISTORY</span>
-            </a>
-            <a href="#products" class="nav-link flex items-center px-8 py-5 rounded-2xl text-gray-400">
-                <i class="fas fa-box mr-4 w-5"></i> <span class="tracking-tight">PRODUCTS</span>
-            </a>
-            <a href="#certs" class="nav-link flex items-center px-8 py-5 rounded-2xl text-gray-400">
-                <i class="fas fa-certificate mr-4 w-5"></i> <span class="tracking-tight">CERTIFICATES</span>
-            </a>
+        <nav class="flex-1 mt-4">
+            <a href="#home" class="nav-item active"><i class="fas fa-home w-6"></i> 홈</a>
+            <a href="#about" class="nav-item"><i class="fas fa-building w-6"></i> 회사개요</a>
+            <a href="#history" class="nav-item"><i class="fas fa-history w-6"></i> 회사연혁</a>
+            <a href="#products" class="nav-item"><i class="fas fa-cog w-6"></i> 제조물품</a>
+            <a href="#certs" class="nav-item"><i class="fas fa-award w-6"></i> 인증현황</a>
         </nav>
 
-        <div class="p-8">
-            <div class="bg-gradient-to-br from-blue-600 to-blue-800 p-6 rounded-[2rem] text-white shadow-xl relative overflow-hidden group">
-                <div class="absolute -right-4 -bottom-4 opacity-20 group-hover:scale-110 transition duration-500">
-                    <i class="fas fa-headset text-7xl"></i>
-                </div>
-                <p class="text-xs font-bold text-blue-200 mb-2">Support Center</p>
-                <p class="text-xl font-black mb-1">033-264-9243</p>
-                <p class="text-[10px] opacity-60">평일 09:00 - 18:00</p>
+        <div class="p-6">
+            <div class="bg-gray-900 rounded-2xl p-5 border border-gray-800">
+                <p class="text-xs text-gray-500 mb-1">문의전화</p>
+                <p class="text-white font-bold text-lg">033-264-9243</p>
             </div>
         </div>
     </aside>
 
-    <!-- Main Content Area -->
+    <!-- Mobile Toggle -->
+    <button onclick="toggleSidebar()" class="lg:hidden fixed top-5 right-5 z-[1100] bg-blue-600 text-white p-4 rounded-xl shadow-lg">
+        <i class="fas fa-bars"></i>
+    </button>
+
     <main class="main-content">
-        
         <!-- Hero Section -->
-        <section id="home" class="hero-section min-h-screen flex items-center px-10 md:px-24">
-            <div class="hero-mesh"></div>
-            <div class="max-w-4xl z-10">
-                <div class="inline-flex items-center gap-3 px-5 py-2 bg-white/10 backdrop-blur-md rounded-full text-blue-300 text-xs font-bold mb-8 border border-white/10">
-                    <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
-                    INNOVATION FOR CLEAN WATER
-                </div>
-                <h1 class="text-6xl md:text-9xl font-black text-white mb-10 leading-[0.95] tracking-tighter">
-                    THE NEXT<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">PUMPING</span><br>SOLUTION.
-                </h1>
-                <p class="text-xl text-blue-100/60 mb-12 leading-relaxed max-w-xl font-light">
-                    비에이텍(주)은 축적된 노하우와 독보적인 기술력으로<br>상하수도 및 산업용 펌프의 새로운 기준을 제시합니다.
+        <section id="home" class="min-h-[70vh] flex items-center px-8 md:px-20 bg-white border-b border-gray-100 relative overflow-hidden">
+            <div class="absolute right-0 top-0 w-1/3 h-full bg-blue-50/50 -skew-x-12 translate-x-20"></div>
+            <div class="max-w-4xl relative z-10">
+                <span class="text-blue-600 font-bold tracking-widest text-sm mb-4 block">PREMIUM QUALITY SINCE 2010</span>
+                <h2 class="text-5xl md:text-7xl font-black text-gray-900 leading-[1.1] mb-8">
+                    물과 기술의 흐름을<br><span class="text-blue-600">완벽하게 제어합니다.</span>
+                </h2>
+                <p class="text-lg text-gray-500 mb-10 max-w-xl leading-relaxed">
+                    비에이텍(주)은 혁신적인 모터펌프 제조 기술로 상하수도 설비 및 산업 현장의 효율을 극대화하는 솔루션을 제공합니다.
                 </p>
-                <div class="flex flex-wrap gap-5">
-                    <a href="#products" class="bg-blue-600 text-white px-10 py-5 rounded-2xl font-black hover:bg-blue-500 transition shadow-2xl shadow-blue-600/30">DISCOVER PRODUCTS</a>
-                    <button onclick="openPdfModal(1)" class="bg-white/5 border border-white/20 text-white px-10 py-5 rounded-2xl font-bold hover:bg-white/10 transition backdrop-blur-md">COMPANY PROFILE</button>
+                <div class="flex flex-wrap gap-4">
+                    <button onclick="openPdf(1)" class="bg-gray-900 text-white px-8 py-4 rounded-xl font-bold hover:bg-black transition">지명원 보기</button>
+                    <a href="#products" class="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-600/20">제품 카탈로그</a>
                 </div>
             </div>
         </section>
 
-        <!-- 회사개요 -->
-        <section id="about" class="py-32 px-10">
+        <!-- Company Section -->
+        <section id="about" class="py-24 px-8 md:px-20">
             <div class="max-w-7xl mx-auto">
-                <div class="grid lg:grid-cols-2 gap-24 items-center">
-                    <div>
-                        <span class="text-blue-600 font-black text-sm tracking-[0.4em] uppercase mb-4 block">01 / Overview</span>
-                        <h2 class="text-6xl font-black text-gray-900 mb-8 tracking-tight">끊임없는 혁신,<br>압도적 신뢰.</h2>
-                        <p class="text-lg text-gray-500 leading-relaxed mb-10">
-                            비에이텍은 2010년 설립 이래, 펌프 제조 분야에서 기술 혁신을 거듭해왔습니다. 
-                            우리는 단순한 기계 제조를 넘어 '깨끗한 물의 순환'이라는 사회적 가치를 실현합니다.
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="tech-card">
+                        <div class="flex items-center gap-4 mb-8">
+                            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-info-circle text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-black">회사개요</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex justify-between border-b pb-3">
+                                <span class="text-gray-400">대표이사</span><span class="font-bold">조세연</span>
+                            </div>
+                            <div class="flex justify-between border-b pb-3">
+                                <span class="text-gray-400">설립일</span><span class="font-bold">2010년 11월 1일</span>
+                            </div>
+                            <div class="flex justify-between border-b pb-3">
+                                <span class="text-gray-400">업종</span><span class="font-bold">제조, 도매 / 모터펌프</span>
+                            </div>
+                            <div class="flex justify-between border-b pb-3">
+                                <span class="text-gray-400">전화번호</span><span class="font-bold">033-264-9243</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tech-card border-none bg-blue-600 text-white">
+                        <div class="flex items-center gap-4 mb-8">
+                            <div class="w-12 h-12 bg-white/10 text-white rounded-xl flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-black">오시는 길</h3>
+                        </div>
+                        <p class="text-blue-100 mb-8 leading-relaxed">
+                            강원 춘천시 퇴계공단2길 64<br>(퇴계제2농공단지내)
                         </p>
-                        
-                        <div class="grid grid-cols-2 gap-6 mb-12">
-                            <div class="glass-card p-8 rounded-3xl">
-                                <h4 class="text-blue-600 font-black text-2xl mb-1 italic">Quality</h4>
-                                <p class="text-sm text-gray-500">철저한 품질 관리 시스템</p>
-                            </div>
-                            <div class="glass-card p-8 rounded-3xl">
-                                <h4 class="text-blue-600 font-black text-2xl mb-1 italic">Speed</h4>
-                                <p class="text-sm text-gray-500">빠른 납기 및 즉각 대응</p>
-                            </div>
-                        </div>
-
-                        <button onclick="openPdfModal(4)" class="flex items-center gap-4 text-gray-900 font-black text-lg hover:text-blue-600 transition group">
-                            VIEW DETAILS <span class="w-12 h-px bg-gray-900 group-hover:bg-blue-600 group-hover:w-20 transition-all"></span>
-                        </button>
-                    </div>
-
-                    <div class="grid gap-6">
-                        <div class="glass-card p-12 rounded-[3rem] border-2 border-blue-100 shadow-2xl">
-                            <h3 class="text-2xl font-black text-gray-900 mb-8">Location</h3>
-                            <div class="space-y-6">
-                                <div class="flex items-start gap-5">
-                                    <div class="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center flex-shrink-0 text-blue-600">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                    </div>
-                                    <p class="text-gray-700 font-medium leading-relaxed">
-                                        강원 춘천시 퇴계공단2길 64<br>
-                                        <span class="text-sm text-gray-400 font-normal">(퇴계제2농공단지내)</span>
-                                    </p>
-                                </div>
-                                <!-- 실제 좌표 반영된 네이버 지도 링크 -->
-                                <a href="https://map.naver.com/v5/search/%EA%B0%95%EC%9B%90%20%EC%B6%98%EC%B2%9C%EC%8B%9C%20%ED%87%B4%EA%B3%84%EA%B3%B5%EB%8B%A82%EA%B8%B8%2064/address/14209536.852332617,4550005.184852932,17?c=14209320.1982701,4550058.2831871,15,0,0,0,dh" target="_blank" class="block w-full bg-gray-900 text-white text-center py-5 rounded-2xl font-bold hover:bg-black transition shadow-xl">
-                                    <i class="fas fa-location-arrow mr-2"></i> 네이버 지도로 위치 확인하기
-                                </a>
-                            </div>
-                        </div>
+                        <a href="https://map.naver.com/p/entry/address/14209536.852,4550005.185,강원특별자치도%20춘천시%20퇴계공단2길%2064?c=15.00,0,0,0,dh" target="_blank" class="inline-block bg-white text-blue-600 px-6 py-3 rounded-xl font-bold">네이버 지도 열기 <i class="fas fa-external-link-alt ml-2"></i></a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 회사연혁 (상세 복원) -->
-        <section id="history" class="py-32 px-10 bg-white/50 backdrop-blur-md">
-            <div class="max-w-5xl mx-auto">
-                <div class="text-center mb-24">
-                    <span class="text-blue-600 font-black text-sm tracking-[0.4em] uppercase mb-4 block">02 / History</span>
-                    <h2 class="text-6xl font-black text-gray-900 tracking-tight leading-none">성장의 역사.</h2>
-                </div>
-
-                <div class="relative border-l-2 border-gray-100 ml-6 space-y-16">
-                    <div class="relative pl-12 group">
-                        <div class="history-circle group-hover:scale-150 transition"></div>
-                        <div class="flex flex-col md:flex-row md:items-center gap-6">
-                            <span class="text-4xl font-black text-blue-600 opacity-20 group-hover:opacity-100 transition">2019</span>
-                            <div class="flex-1 glass-card p-8 rounded-[2rem]">
-                                <ul class="space-y-3 font-bold text-gray-700">
-                                    <li>• 강원도지사 표창 수상 (1월)</li>
-                                    <li>• 춘천시 유망중소기업 선정 (11월)</li>
-                                </ul>
-                            </div>
-                        </div>
+        <!-- History Section -->
+        <section id="history" class="py-24 px-8 md:px-20 bg-gray-50">
+            <div class="max-w-4xl mx-auto">
+                <h3 class="text-4xl font-black mb-16 text-center">연혁</h3>
+                <div class="relative border-l-2 border-blue-200 ml-4 space-y-12">
+                    <div class="pl-10 relative">
+                        <div class="absolute left-[-9px] top-1 w-4 h-4 bg-blue-600 rounded-full border-4 border-white"></div>
+                        <span class="text-blue-600 font-black text-xl">2019</span>
+                        <p class="text-gray-700 font-medium mt-2">• 강원도지사 표창 수상 (1월)</p>
+                        <p class="text-gray-700 font-medium">• 춘천시 유망중소기업 선정 (11월)</p>
                     </div>
-
-                    <div class="relative pl-12 group">
-                        <div class="history-circle group-hover:scale-150 transition"></div>
-                        <div class="flex flex-col md:flex-row md:items-center gap-6">
-                            <span class="text-4xl font-black text-blue-600 opacity-20 group-hover:opacity-100 transition">2018</span>
-                            <div class="flex-1 glass-card p-8 rounded-[2rem]">
-                                <ul class="space-y-3 font-bold text-gray-700">
-                                    <li>• 경영혁신형 중소기업(Main-Biz) 확인 (6월)</li>
-                                    <li>• ISO 9001:2015 인증 갱신</li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="pl-10 relative">
+                        <div class="absolute left-[-9px] top-1 w-4 h-4 bg-blue-600 rounded-full border-4 border-white"></div>
+                        <span class="text-blue-600 font-black text-xl">2018</span>
+                        <p class="text-gray-700 font-medium mt-2">• 경영혁신형 중소기업(Main-Biz) 확인 (6월)</p>
+                        <p class="text-gray-700 font-medium">• ISO 9001:2015 인증 갱신</p>
                     </div>
-
-                    <div class="relative pl-12 group">
-                        <div class="history-circle group-hover:scale-150 transition"></div>
-                        <div class="flex flex-col md:flex-row md:items-center gap-6">
-                            <span class="text-4xl font-black text-blue-600 opacity-20 group-hover:opacity-100 transition">2016</span>
-                            <div class="flex-1 glass-card p-8 rounded-[2rem]">
-                                <ul class="space-y-3 font-bold text-gray-700">
-                                    <li>• 직접생산확인증명 획득 (한국펌프공업협동조합)</li>
-                                    <li>• 공장 등록 및 제조 설비 확충</li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="pl-10 relative">
+                        <div class="absolute left-[-9px] top-1 w-4 h-4 bg-blue-600 rounded-full border-4 border-white"></div>
+                        <span class="text-blue-600 font-black text-xl">2016</span>
+                        <p class="text-gray-700 font-medium mt-2">• 직접생산확인증명 획득 (한국펌프공업협동조합)</p>
+                        <p class="text-gray-700 font-medium">• 공장 등록 및 제조 설비 확충</p>
                     </div>
-
-                    <div class="relative pl-12 group">
-                        <div class="history-circle group-hover:scale-150 transition"></div>
-                        <div class="flex flex-col md:flex-row md:items-center gap-6">
-                            <span class="text-4xl font-black text-blue-600 opacity-20 group-hover:opacity-100 transition">2010</span>
-                            <div class="flex-1 glass-card p-8 rounded-[2rem]">
-                                <ul class="space-y-3 font-bold text-gray-700">
-                                    <li>• 비에이텍(주) 법인 설립 (11월 01일)</li>
-                                    <li>• 모터펌프 제조 및 도매업 개시</li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="pl-10 relative">
+                        <div class="absolute left-[-9px] top-1 w-4 h-4 bg-blue-600 rounded-full border-4 border-white"></div>
+                        <span class="text-blue-600 font-black text-xl">2010</span>
+                        <p class="text-gray-700 font-medium mt-2">• 비에이텍(주) 설립 (11월 01일)</p>
                     </div>
-                </div>
-
-                <div class="mt-20 text-center">
-                    <button onclick="openPdfModal(6)" class="px-10 py-4 bg-gray-100 rounded-full font-bold hover:bg-gray-200 transition">전체 연혁 지명원(6p)에서 확인</button>
                 </div>
             </div>
         </section>
 
-        <!-- 제조물품 -->
-        <section id="products" class="py-32 px-10 overflow-hidden">
+        <!-- Products -->
+        <section id="products" class="py-24 px-8 md:px-20">
             <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-10">
-                    <div>
-                        <span class="text-blue-600 font-black text-sm tracking-[0.4em] uppercase mb-4 block">03 / Products</span>
-                        <h2 class="text-6xl font-black text-gray-900 tracking-tight">강력한 퍼포먼스.</h2>
-                    </div>
-                    <button onclick="openPdfModal(8)" class="bg-blue-600 text-white px-10 py-5 rounded-2xl font-black shadow-2xl shadow-blue-600/30 hover:bg-blue-500 transition">
-                        CATALOG DOWNLOAD
-                    </button>
+                <div class="flex justify-between items-end mb-12">
+                    <h3 class="text-4xl font-black">제조 품목</h3>
+                    <button onclick="openPdf(8)" class="text-blue-600 font-bold border-b-2 border-blue-600 pb-1">카탈로그 전체보기</button>
                 </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" id="product-grid">
-                    <!-- JS Rendering -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="p-grid">
+                    <!-- JS rendering -->
                 </div>
             </div>
         </section>
 
-        <!-- 인증현황 -->
-        <section id="certs" class="py-40 px-10 bg-[#020617] text-white rounded-[5rem] m-6">
+        <!-- Certificates -->
+        <section id="certs" class="py-24 px-8 md:px-20 bg-gray-900 text-white rounded-t-[40px]">
             <div class="max-w-7xl mx-auto">
-                <div class="grid lg:grid-cols-3 gap-20">
-                    <div class="lg:sticky lg:top-10 h-fit">
-                        <span class="text-blue-500 font-black text-sm tracking-[0.4em] uppercase mb-4 block">04 / Credentials</span>
-                        <h2 class="text-6xl font-black mb-8 leading-[1.1]">신뢰할 수 있는<br>기술의 증거.</h2>
-                        <p class="text-gray-400 leading-relaxed mb-12">
-                            비에이텍은 공인된 기관의 인증을 통해 품질과 안정성을 보장합니다. 각 항목을 클릭하여 인증서를 확인하실 수 있습니다.
-                        </p>
-                        <div class="w-24 h-2 bg-blue-600"></div>
-                    </div>
-                    <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6" id="cert-display">
-                        <!-- JS Rendering -->
-                    </div>
+                <h3 class="text-4xl font-black mb-16">인증현황</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="c-grid">
+                    <!-- JS rendering -->
                 </div>
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer class="bg-white py-32 px-10 border-t border-gray-100">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-16">
-                <div class="text-center md:text-left">
-                    <h4 class="text-4xl font-black text-gray-900 mb-2">BATECH</h4>
-                    <p class="text-gray-400 font-medium tracking-widest text-xs">BLUE ADVANCED TECHNOLOGY</p>
-                </div>
-                <div class="flex flex-col md:items-end gap-2 text-gray-600">
-                    <p class="font-black text-lg">비에이텍 주식회사</p>
-                    <p class="text-sm">강원 춘천시 퇴계공단2길 64 (퇴계제2농공단지내)</p>
-                    <div class="flex gap-8 mt-4 text-xs font-bold text-gray-400">
-                        <span>T. 033-264-9243</span>
-                        <span>F. 033-251-5747</span>
-                    </div>
-                </div>
-            </div>
-            <div class="max-w-7xl mx-auto mt-20 pt-10 border-t border-gray-50 flex justify-between items-center text-[10px] text-gray-300 font-bold tracking-widest uppercase">
-                <p>© 2024 BATECH CO., LTD.</p>
-                <p>Designed for excellence</p>
+        <footer class="py-20 px-8 md:px-20 bg-white border-t border-gray-100">
+            <div class="max-w-7xl mx-auto text-gray-400 text-sm">
+                <p class="font-bold text-gray-900 mb-2">비에이텍 주식회사</p>
+                <p>강원 춘천시 퇴계공단2길 64 | TEL. 033-264-9243 | FAX. 033-251-5747</p>
+                <p class="mt-4">© 2024 BATECH Co., Ltd. All Rights Reserved.</p>
             </div>
         </footer>
     </main>
 
-    <!-- PDF Modal -->
-    <div id="pdfModal" class="pdf-modal items-center justify-center p-4">
-        <div class="w-full max-w-6xl h-full bg-white rounded-[3rem] shadow-2xl flex flex-col overflow-hidden relative">
-            <div class="bg-gray-950 text-white px-10 py-6 flex justify-between items-center border-b border-white/5">
+    <!-- PDF Viewer Modal -->
+    <div id="pdfModal" class="modal-overlay">
+        <div class="pdf-container">
+            <div class="bg-gray-100 px-6 py-4 flex justify-between items-center border-b border-gray-200">
                 <div class="flex items-center gap-4">
-                    <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span class="font-black text-sm tracking-widest uppercase">Document Viewer</span>
-                </div>
-                <div class="flex items-center gap-10">
-                    <div class="flex items-center gap-8 bg-white/5 px-6 py-2 rounded-2xl">
-                        <button onclick="prevPage()" class="hover:text-blue-400 transition"><i class="fas fa-chevron-left"></i></button>
-                        <span id="page-num-display" class="font-mono text-xs font-bold tracking-widest">1 / --</span>
-                        <button onclick="nextPage()" class="hover:text-blue-400 transition"><i class="fas fa-chevron-right"></i></button>
+                    <span class="text-sm font-bold text-gray-700">지명원 뷰어</span>
+                    <div class="flex items-center gap-2 bg-white px-3 py-1 rounded-lg border border-gray-300 text-xs font-mono">
+                        <button onclick="changePage(-1)" class="hover:text-blue-600"><i class="fas fa-chevron-left"></i></button>
+                        <span id="pageNum">1</span> / <span id="pageCount">-</span>
+                        <button onclick="changePage(1)" class="hover:text-blue-600"><i class="fas fa-chevron-right"></i></button>
                     </div>
-                    <button onclick="closePdfModal()" class="text-3xl hover:text-red-500 transition"><i class="fas fa-times"></i></button>
                 </div>
+                <button onclick="closePdf()" class="text-2xl text-gray-400 hover:text-gray-900">&times;</button>
             </div>
-            <div class="flex-1 bg-gray-900 overflow-auto flex justify-center p-6 md:p-12 relative" id="pdf-view-container">
-                <div id="pdf-loading" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-950/80 z-20 text-white">
-                    <div class="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-6"></div>
-                    <p class="text-xs font-black tracking-[0.3em] uppercase opacity-50">Loading Document</p>
+            <div class="flex-1 overflow-auto bg-gray-200 flex justify-center p-4" id="pdfWrapper">
+                <div id="pdfLoading" class="hidden absolute inset-0 bg-white/80 flex flex-col items-center justify-center z-10">
+                    <div class="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-3"></div>
+                    <p class="text-xs font-bold text-blue-600">문서를 렌더링 중입니다...</p>
                 </div>
-                <canvas id="pdf-canvas" class="shadow-2xl max-w-full rounded-lg"></canvas>
+                <canvas id="pdfCanvas" class="shadow-xl bg-white"></canvas>
             </div>
         </div>
     </div>
 
     <script>
+        // PDF 관련 전역 변수
         const pdfjsLib = window['pdfjs-dist/build/pdf'];
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-        let pdfDoc = null, pageNum = 1, pageRendering = false;
-        const scale = 1.8;
-        const canvas = document.getElementById('pdf-canvas');
+        let pdfDoc = null, pageNum = 1, isRendering = false;
+        const canvas = document.getElementById('pdfCanvas');
         const ctx = canvas.getContext('2d');
 
-        // 제품 데이터 및 렌더링
-        const products = [
-            {n:"다단벌류트펌프", d:"고양정 용도"}, {n:"단단벌류트펌프", d:"범용 펌프"}, 
-            {n:"양흡입벌류트", d:"대용량 배수"}, {n:"편흡입벌류트", d:"소형/중형 용도"}, 
-            {n:"정량펌프", d:"정밀 약품 주입"}, {n:"수중펌프", d:"지하수/침수 대비"}, 
-            {n:"오수펌프", d:"하수 처리장"}, {n:"부스터펌프", d:"급수 압력 유지"}
-        ];
-        
-        const productGrid = document.getElementById('product-grid');
-        products.forEach(p => {
-            const div = document.createElement('div');
-            div.className = 'glass-card p-10 rounded-[2.5rem]';
-            div.innerHTML = `
-                <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-8">
-                    <i class="fas fa-microchip"></i>
-                </div>
-                <h5 class="text-2xl font-black text-gray-900 mb-2">${p.n}</h5>
-                <p class="text-sm text-gray-400 font-medium">${p.d}</p>
-            `;
-            productGrid.appendChild(div);
-        });
-
-        // 인증 데이터 및 렌더링
-        const certs = [
-            {n:"사업자등록증", p:12}, {n:"공장등록증", p:13}, {n:"직접생산확인", p:15}, 
-            {n:"ISO 9001", p:17}, {n:"Main-Biz", p:19}, {n:"펌프조합원증", p:20}, 
-            {n:"도지사 표창장", p:21}
-        ];
-        
-        const certDisplay = document.getElementById('cert-display');
-        certs.forEach(c => {
-            const div = document.createElement('div');
-            div.className = 'bg-white/5 border border-white/10 p-10 rounded-[2.5rem] hover:bg-white/10 transition group cursor-pointer flex flex-col justify-between h-64';
-            div.onclick = () => openPdfModal(c.p);
-            div.innerHTML = `
-                <div class="text-blue-500 text-4xl group-hover:scale-110 transition duration-500">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <div>
-                    <h5 class="text-xl font-black mb-4 group-hover:text-blue-400 transition">${c.n}</h5>
-                    <div class="flex items-center gap-2 text-[10px] font-bold text-gray-500 tracking-widest uppercase">
-                        View Certificate <i class="fas fa-arrow-right text-blue-500"></i>
+        // 제품 데이터
+        const items = ["다단벌류트펌프", "단단벌류트펌프", "양흡입벌류트", "정량펌프", "수중펌프", "오수펌프", "부스터펌프", "심정용펌프"];
+        const pGrid = document.getElementById('p-grid');
+        items.forEach(item => {
+            pGrid.innerHTML += `
+                <div class="tech-card text-center p-6">
+                    <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tools"></i>
                     </div>
+                    <p class="font-bold text-gray-800">${item}</p>
                 </div>
             `;
-            certDisplay.appendChild(div);
         });
 
-        // UI 제어 함수
+        // 인증 데이터
+        const certs = [
+            {n: "사업자등록증", p: 12}, {n: "공장등록증", p: 13}, {n: "직접생산확인", p: 15},
+            {n: "ISO 9001", p: 17}, {n: "Main-Biz", p: 19}, {n: "표창장", p: 21}
+        ];
+        const cGrid = document.getElementById('c-grid');
+        certs.forEach(c => {
+            cGrid.innerHTML += `
+                <div onclick="openPdf(${c.p})" class="bg-white/5 border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition cursor-pointer group">
+                    <div class="text-blue-500 mb-6 text-2xl group-hover:scale-110 transition duration-300">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h5 class="font-bold text-lg mb-2">${c.n}</h5>
+                    <p class="text-xs text-gray-500">인증서 확인하기 <i class="fas fa-arrow-right ml-1"></i></p>
+                </div>
+            `;
+        });
+
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('active');
         }
 
-        async function openPdfModal(page) {
+        // PDF 제어 함수
+        async function openPdf(page) {
             pageNum = page;
             document.getElementById('pdfModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
-            
+
             if (!pdfDoc) {
                 try {
                     const loadingTask = pdfjsLib.getDocument('ji.pdf');
                     pdfDoc = await loadingTask.promise;
+                    document.getElementById('pageCount').textContent = pdfDoc.numPages;
                     renderPage(pageNum);
                 } catch (err) {
-                    console.error("PDF 로드 실패:", err);
-                    document.getElementById('pdf-loading').innerHTML = `
-                        <i class="fas fa-exclamation-triangle text-5xl text-yellow-500 mb-6"></i>
-                        <p class="text-white font-bold uppercase tracking-widest">Document Not Found</p>
-                        <p class="text-xs text-gray-400 mt-2">ji.pdf 파일이 서버에 있는지 확인해 주세요.</p>
-                    `;
+                    alert("PDF 파일을 불러올 수 없습니다. (ji.pdf 파일 존재 여부를 확인해주세요)");
+                    closePdf();
                 }
             } else {
                 renderPage(pageNum);
             }
         }
 
-        function renderPage(num) {
-            pageRendering = true;
-            document.getElementById('pdf-loading').style.display = 'flex';
+        async function renderPage(num) {
+            if (isRendering) return;
+            isRendering = true;
+            document.getElementById('pdfLoading').classList.remove('hidden');
+
+            const page = await pdfDoc.getPage(num);
+            const viewport = page.getViewport({ scale: window.innerWidth < 768 ? 1.0 : 1.5 });
             
-            pdfDoc.getPage(num).then((page) => {
-                const viewport = page.getViewport({ scale: scale });
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-                const renderContext = { canvasContext: ctx, viewport: viewport };
-                page.render(renderContext).promise.then(() => {
-                    pageRendering = false;
-                    document.getElementById('pdf-loading').style.display = 'none';
-                    document.getElementById('page-num-display').textContent = `${num} / ${pdfDoc.numPages}`;
-                });
-            });
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            const renderContext = { canvasContext: ctx, viewport: viewport };
+            await page.render(renderContext).promise;
+            
+            isRendering = false;
+            document.getElementById('pdfLoading').classList.add('hidden');
+            document.getElementById('pageNum').textContent = num;
+            document.getElementById('pdfWrapper').scrollTop = 0;
         }
 
-        function prevPage() { if (pageNum <= 1 || pageRendering) return; pageNum--; renderPage(pageNum); }
-        function nextPage() { if (!pdfDoc || pageNum >= pdfDoc.numPages || pageRendering) return; pageNum++; renderPage(pageNum); }
-        function closePdfModal() {
+        function changePage(delta) {
+            const next = pageNum + delta;
+            if (next > 0 && next <= pdfDoc.numPages) {
+                pageNum = next;
+                renderPage(pageNum);
+            }
+        }
+
+        function closePdf() {
             document.getElementById('pdfModal').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
 
-        // 스크롤 동기화
+        // 스크롤 시 내비게이션 하이라이트
         window.addEventListener('scroll', () => {
             const sections = ['home', 'about', 'history', 'products', 'certs'];
-            const navLinks = document.querySelectorAll('.nav-link');
-            let current = "";
-            sections.forEach(section => {
-                const s = document.getElementById(section);
-                if (pageYOffset >= s.offsetTop - 300) current = section;
+            const navItems = document.querySelectorAll('.nav-item');
+            let current = "home";
+            
+            sections.forEach(id => {
+                const s = document.getElementById(id);
+                if (window.scrollY >= s.offsetTop - 200) current = id;
             });
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) link.classList.add('active');
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${current}`) item.classList.add('active');
             });
         });
     </script>
