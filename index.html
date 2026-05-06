@@ -352,10 +352,16 @@
             pCont.appendChild(div);
         });
 
+        // 알려주신 페이지 번호로 수정됨
         const certs = [
-            {n:"사업자등록증", p:12}, {n:"공장등록증", p:13}, {n:"산업단지 입주확인서", p:14},
-            {n:"직접생산확인증명서", p:15}, {n:"ISO 9001 인증", p:16}, {n:"Main-Biz 확인서", p:17},
-            {n:"조합원증", p:18}, {n:"강원도지사 표창", p:19}
+            {n:"사업자등록증", p:12}, 
+            {n:"공장등록증", p:13}, 
+            {n:"산업단지 입주확인서", p:14},
+            {n:"직접생산확인증명서", p:15}, // 15,16p 중 첫 페이지
+            {n:"ISO 9001 인증", p:17},       // 17,18p 중 첫 페이지
+            {n:"Main-Biz 확인서", p:19},
+            {n:"조합원증", p:20},
+            {n:"강원도지사 표창장", p:21}
         ];
         const cGrid = document.getElementById('cert-grid');
         certs.forEach(c => {
@@ -409,7 +415,6 @@
             document.body.style.overflow = 'hidden';
             
             if (!pdfDoc) {
-                // 깃허브 등 서버 환경에서 자동 로드
                 const success = await initPdf('ji.pdf');
                 if (success) renderPage(pageNum);
             } else {
