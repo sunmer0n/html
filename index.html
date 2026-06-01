@@ -1,718 +1,1574 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="scroll-smooth">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>비에이텍(주) | BATECH — Internal Portal</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-:root{--brand-blue:#0066FF;--brand-cyan:#00D1FF;--sidebar-bg:#030712;}
-body{font-family:'Noto Sans KR',sans-serif;background:#fcfdfe;color:#111827;scroll-behavior:smooth;}
-.hero-bg{background:radial-gradient(circle at 0% 0%,#001a4d 0%,#000814 100%);position:relative;overflow:hidden;}
-.particle{position:absolute;background:linear-gradient(to bottom,var(--brand-blue),var(--brand-cyan));border-radius:50%;opacity:.3;pointer-events:none;animation:float 20s infinite linear;}
-@keyframes float{0%{transform:translateY(0) translateX(0) scale(1);opacity:0;}10%{opacity:.3;}90%{opacity:.3;}100%{transform:translateY(-100vh) translateX(50vw) scale(.5);opacity:0;}}
-.sidebar{width:280px;height:100vh;position:fixed;left:0;top:0;background:var(--sidebar-bg);z-index:1000;transition:all .4s cubic-bezier(.4,0,.2,1);border-right:1px solid rgba(255,255,255,.1);overflow-y:auto;}
-.main-content{margin-left:280px;min-height:100vh;}
-.tech-card{background:#fff;border-radius:32px;padding:2.5rem;border:1px solid #f1f5f9;box-shadow:0 4px 6px -1px rgba(0,0,0,.05);transition:all .4s cubic-bezier(.175,.885,.32,1.275);}
-.tech-card:hover{transform:translateY(-10px);box-shadow:0 25px 50px -12px rgba(0,102,255,.15);border-color:var(--brand-blue);}
-.nav-item{display:flex;align-items:center;padding:1rem 2rem;margin:.3rem 1rem;border-radius:16px;color:#64748b;font-weight:600;transition:all .3s ease;cursor:pointer;text-decoration:none;font-size:.85rem;}
-.nav-item:hover,.nav-item.active{background:linear-gradient(90deg,rgba(0,102,255,.15) 0%,transparent 100%);color:#3b82f6;}
-.nav-item i{font-size:1rem;margin-right:.85rem;transition:transform .3s ease;}
-.nav-item:hover i{transform:scale(1.2);}
-.nav-section-label{padding:.5rem 2rem .25rem 3rem;font-size:.6rem;font-weight:900;letter-spacing:.15em;color:#374151;text-transform:uppercase;}
-/* Modals */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(2,6,23,.95);z-index:2000;padding:20px;align-items:center;justify-content:center;}
-.pdf-box{width:100%;max-width:1200px;height:92vh;background:#fff;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 0 100px rgba(0,102,255,.3);}
-.text-gradient{background:linear-gradient(to right,#60A5FA,#2DD4BF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-/* Card news hover zoom */
-.card-news-item{transition:transform .35s cubic-bezier(.175,.885,.32,1.275),box-shadow .35s ease;cursor:zoom-in;border-radius:20px;overflow:hidden;position:relative;}
-.card-news-item:hover{transform:scale(1.08);box-shadow:0 30px 60px -12px rgba(0,102,255,.25);z-index:10;}
-/* Calendar */
-.cal-day{min-height:80px;border:1px solid #f1f5f9;border-radius:12px;padding:.5rem;font-size:.75rem;}
-.cal-day.today{background:rgba(0,102,255,.06);border-color:#3b82f6;}
-.cal-day.other-month{opacity:.3;}
-.cal-event{border-radius:6px;padding:2px 6px;font-size:.65rem;font-weight:700;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-/* AI card */
-.ai-card{background:linear-gradient(135deg,#0f172a,#1e293b);border-radius:24px;border:1px solid rgba(99,102,241,.3);}
-.step-badge{width:2rem;height:2rem;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:900;color:#fff;flex-shrink:0;}
-/* Video */
-.video-wrap{position:relative;border-radius:32px;overflow:hidden;box-shadow:0 25px 60px -12px rgba(0,102,255,.3);}
-/* Brochure spread */
-#brochure-spread{display:none;background:#d1d5db;padding:2rem;gap:1rem;justify-content:center;align-items:flex-start;}
-#spread-left,#spread-right{flex:1;max-width:50%;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.15);}
-#spread-left canvas,#spread-right canvas{max-width:100%;display:block;}
-@media(max-width:1024px){.sidebar{transform:translateX(-100%)}.main-content{margin-left:0}.sidebar.active{transform:translateX(0)}}
-@media(max-width:768px){
-  #brochure-spread{flex-direction:column;}
-  #spread-left,#spread-right{max-width:100%;}
-  .card-news-grid{grid-template-columns:repeat(2,1fr)!important;}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(주)비에이텍 - 깨끗한 물의 흐름을 만드는 혁신 기술</title>
+    <meta name="description" content="신뢰할 수 있는 기술력으로 최고의 워터 펌프 및 스마트 수처리 솔루션을 제공하는 비에이텍(주)입니다.">
+    <meta name="keywords" content="비에이텍, 워터펌프, 산업용펌프, 펌프수리, 펌프제작, 수처리설비, 스마트펌프">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="(주)비에이텍 | 깨끗한 물의 흐름을 만드는 기술">
+    <meta property="og:description" content="신뢰할 수 있는 워터 펌프 및 스마트 수처리 솔루션의 선두주자 비에이텍(주)입니다.">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            950: '#030712',
+                            900: '#0A0F1D',
+                            800: '#111827',
+                            700: '#1F2937',
+                        },
+                        neonBlue: '#00B4D8',
+                        neonCyan: '#90E0EF',
+                        electricCyan: '#00F0FF',
+                        lightbg: '#f8fafc',
+                    },
+                    boxShadow: {
+                        'neon': '0 0 15px rgba(0, 240, 255, 0.4)',
+                        'neon-strong': '0 0 25px rgba(0, 240, 255, 0.7)',
+                        'neon-green': '0 0 15px rgba(16, 185, 129, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts (Pretendard & Outfit) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.8/dist/web/static/pretendard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    
+    <!-- 로컬 환경(보안/CORS) 우회를 위한 지명원 Base64 데이터 -->
+    <script src="public/pdfs/ji_data.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #030712;
+            color: #E5E7EB;
+            overflow-x: hidden;
+        }
+        .font-outfit {
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00B4D8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00F0FF;
+        }
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-panel-hover:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+            transform: translateY(-4px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Neon Border Animations */
+        .neon-glow {
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            width: 8px;
+            height: 8px;
+            background-color: #00F0FF;
+            border-radius: 50%;
+            position: fixed;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        .custom-cursor-follower {
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(0, 240, 255, 0.3);
+            border-radius: 50%;
+            position: fixed;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.08s ease-out, width 0.2s, height 0.2s, border-color 0.2s;
+        }
+
+        /* Magnetic Glow Card */
+        .glow-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .glow-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(800px circle at var(--x, 0px) var(--y, 0px), rgba(0, 240, 255, 0.15), transparent 40%);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .glow-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Wave SVG style */
+        .wave-container {
+            position: relative;
+            width: 100%;
+            height: 80px;
+            overflow: hidden;
+            margin-top: -80px;
+            z-index: 10;
+        }
+        .wave-svg {
+            position: absolute;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            fill: #030712;
+            animation: wave-move 15s linear infinite;
+        }
+        .wave-svg.wave-2 {
+            fill: rgba(0, 180, 216, 0.08);
+            animation: wave-move 20s linear infinite reverse;
+            z-index: 5;
+        }
+        @keyframes wave-move {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
 </head>
-<body class="antialiased">
+<body class="selection:bg-neonBlue selection:text-navy-950">
 
-<!-- ═══════════════════════════════════════ -->
-<!--               SIDEBAR                  -->
-<!-- ═══════════════════════════════════════ -->
-<aside id="sidebar" class="sidebar flex flex-col">
-  <div class="p-8 pb-4">
-    <h1 style="font-family:'Orbitron',sans-serif;" class="text-white text-2xl font-black tracking-tighter flex items-center gap-2">
-      <span class="text-blue-500">BA</span>TECH
-    </h1>
-    <div class="h-1 w-10 bg-blue-600 mt-2 rounded-full"></div>
-    <p class="text-gray-500 text-xs mt-2 font-medium">Internal Portal</p>
-  </div>
-  <nav class="flex-1 pb-4">
-    <div class="nav-section-label mt-2">Public</div>
-    <a href="#home"     class="nav-item active"><i class="fas fa-layer-group"></i>OVERVIEW</a>
-    <a href="#about"    class="nav-item"><i class="fas fa-university"></i>ABOUT</a>
-    <a href="#history"  class="nav-item"><i class="fas fa-route"></i>HISTORY</a>
-    <a href="#products" class="nav-item"><i class="fas fa-microchip"></i>PRODUCTS</a>
-    <a href="#certs"    class="nav-item"><i class="fas fa-certificate"></i>CREDENTIALS</a>
-    <div class="nav-section-label mt-4">Media</div>
-    <a href="#video"    class="nav-item"><i class="fas fa-film"></i>홍보영상</a>
-    <a href="#cardnews" class="nav-item"><i class="fas fa-newspaper"></i>카드뉴스</a>
-    <a href="#brochure" class="nav-item"><i class="fas fa-book-open"></i>브로슈어</a>
-    <div class="nav-section-label mt-4">Internal</div>
-    <a href="#calendar" class="nav-item"><i class="fas fa-calendar-alt"></i>이번달 일정</a>
-    <a href="#aitips"   class="nav-item"><i class="fas fa-robot"></i>오늘의 AI 팁</a>
-  </nav>
-  <div class="p-6">
-    <div class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl p-5 text-white shadow-xl shadow-blue-900/40">
-      <p class="text-[9px] font-bold uppercase tracking-widest opacity-70 mb-1">Customer Support</p>
-      <p class="text-lg font-black">033-264-9243</p>
-    </div>
-  </div>
-</aside>
+    <!-- Custom Cursor Nodes -->
+    <div class="custom-cursor hidden md:block" id="cursor"></div>
+    <div class="custom-cursor-follower hidden md:block" id="cursor-follower"></div>
 
-<!-- Mobile toggle -->
-<button onclick="toggleSidebar()" class="lg:hidden fixed top-6 right-6 z-[1100] bg-blue-600 text-white w-12 h-12 rounded-xl shadow-xl flex items-center justify-center">
-  <i class="fas fa-bars"></i>
-</button>
+    <!-- Scroll Progress Indicator -->
+    <div class="fixed top-0 left-0 w-full h-[3px] bg-gradient-to-r from-neonBlue via-electricCyan to-blue-600 z-[100] origin-left scale-x-0" id="scroll-progress"></div>
 
-<main class="main-content">
+    <!-- Header (Premium Sticky) -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-transparent border-b border-white/5 py-4" id="header">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <a href="#home" class="flex items-center gap-3 text-2xl font-bold text-white tracking-wide group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-neonBlue to-blue-600 flex items-center justify-center shadow-neon group-hover:scale-110 transition duration-300">
+                    <i class="fa-solid fa-water text-white animate-pulse"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="leading-none text-xl font-extrabold tracking-tight">비에이텍<span class="text-electricCyan font-light font-outfit ml-1 text-xs">BA TECH</span></span>
+                    <span class="text-[9px] text-gray-400 font-light mt-0.5 uppercase tracking-widest font-outfit">Blue Advanced Technology</span>
+                </div>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <nav class="hidden lg:flex items-center gap-8 font-medium text-sm text-gray-300">
+                <a href="#about" class="hover:text-electricCyan transition-all duration-300 relative group py-2">회사소개</a>
+                <a href="#simulator" class="hover:text-electricCyan transition-all duration-300 relative group py-2">기술시뮬레이터</a>
+                <a href="#products" class="hover:text-electricCyan transition-all duration-300 relative group py-2">제조물품</a>
+                <a href="#media-center" class="hover:text-electricCyan transition-all duration-300 relative group py-2">미디어센터</a>
+                <a href="#internal-portal" class="hover:text-electricCyan/90 text-emerald-400 transition-all duration-300 relative group py-2 flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping"></span> 사내포털 (AI/일정)
+                </a>
+                <a href="#history" class="hover:text-electricCyan transition-all duration-300 relative group py-2">연혁</a>
+                <a href="#performance" class="hover:text-electricCyan transition-all duration-300 relative group py-2">사업실적</a>
+            </nav>
 
-<!-- ═══════════════════════════════════════ -->
-<!--               HERO                     -->
-<!-- ═══════════════════════════════════════ -->
-<section id="home" class="hero-bg min-h-screen flex items-center px-10 md:px-24">
-  <div id="particle-container"></div>
-  <div class="max-w-5xl relative z-10">
-    <div class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold tracking-widest mb-8">FUTURE TECHNOLOGY LEADERS</div>
-    <h2 class="text-6xl md:text-9xl font-black text-white leading-[0.9] tracking-tighter mb-10">FLOWING<br><span class="text-gradient">INNOVATION.</span></h2>
-    <p class="text-xl text-blue-100/60 max-w-2xl leading-relaxed mb-12 font-light">비에이텍(주)은 정교한 설계와 검증된 품질로 최상의 유체 제어 솔루션을 제공합니다.</p>
-    <div class="flex flex-wrap gap-6">
-      <button onclick="openJiPdf(1)" class="group relative px-10 py-5 bg-blue-600 text-white rounded-2xl font-black overflow-hidden shadow-2xl shadow-blue-600/30">
-        <span class="relative z-10">COMPANY PROFILE</span>
-        <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-      </button>
-      <a href="#products" class="px-10 py-5 bg-white/5 border border-white/20 text-white rounded-2xl font-black hover:bg-white/10 transition backdrop-blur-md">PRODUCT CATALOG</a>
-      <a href="#video"    class="px-10 py-5 bg-white/5 border border-white/20 text-white rounded-2xl font-black hover:bg-white/10 transition backdrop-blur-md">▶ 홍보영상</a>
-    </div>
-  </div>
-</section>
+            <div class="hidden lg:flex items-center gap-4">
+                <button onclick="openBrochureModal()" class="relative overflow-hidden group bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-emerald-500 text-white px-5 py-2.5 rounded-xl font-bold shadow-neon-green transition-all duration-300 flex items-center gap-2">
+                    <i class="fa-solid fa-book-open"></i> 브로슈어 2면뷰어
+                </button>
+                <button onclick="openPdfModal('all')" class="relative overflow-hidden group bg-gradient-to-r from-neonBlue to-blue-600 hover:from-electricCyan hover:to-neonBlue text-navy-950 px-5 py-2.5 rounded-xl font-bold shadow-neon hover:shadow-neon-strong transition-all duration-300 flex items-center gap-2">
+                    <span class="relative z-10 text-white flex items-center gap-2">
+                        <i class="fa-solid fa-file-pdf"></i> 지명원 전체보기
+                    </span>
+                </button>
+            </div>
 
-<!-- ═══════════════════════════════════════ -->
-<!--               ABOUT                    -->
-<!-- ═══════════════════════════════════════ -->
-<section id="about" class="py-32 px-10">
-  <div class="max-w-7xl mx-auto">
-    <div class="grid lg:grid-cols-2 gap-20 items-center">
-      <div>
-        <h3 class="text-sm font-black text-blue-600 tracking-[0.3em] uppercase mb-4">The Company</h3>
-        <h2 class="text-5xl font-black text-gray-900 mb-8 leading-tight">축적된 신뢰로<br>시장을 선도합니다.</h2>
-        <div class="grid grid-cols-2 gap-4 mb-10">
-          <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100"><p class="text-xs text-gray-400 mb-1">설립일</p><p class="font-bold text-gray-800">2010. 11. 01</p></div>
-          <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100"><p class="text-xs text-gray-400 mb-1">대표자</p><p class="font-bold text-gray-800">조세연</p></div>
+            <!-- Mobile Toggle -->
+            <button class="lg:hidden text-gray-300 text-2xl focus:outline-none w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/5 transition" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
         </div>
-        <div class="space-y-6">
-          <div class="flex items-start gap-4"><div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0"><i class="fas fa-check"></i></div><p class="text-gray-600 leading-relaxed font-medium">상하수도용 펌프 제조 및 시스템 설계 전문 역량 보유</p></div>
-          <div class="flex items-start gap-4"><div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0"><i class="fas fa-check"></i></div><p class="text-gray-600 leading-relaxed font-medium">강원권 기반의 즉각적인 유지보수 및 기술 지원 서비스</p></div>
-          <div class="flex items-start gap-4"><div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0"><i class="fas fa-check"></i></div><p class="text-gray-600 leading-relaxed font-medium">KC 위생안전기준 인증 — 부스터펌프시스템 (KCW-2025-0163)</p></div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-navy-900/95 border-b border-white/10 p-6 flex flex-col gap-4 shadow-2xl backdrop-blur-lg animate-fade-in">
+            <a href="#about" class="text-gray-300 hover:text-electricCyan py-2 border-b border-white/5 font-semibold" onclick="document.getElementById('mobile-menu').classList.add('hidden')">회사소개</a>
+            <a href="#simulator" class="text-gray-300 hover:text-electricCyan py-2 border-b border-white/5 font-semibold" onclick="document.getElementById('mobile-menu').classList.add('hidden')">기술시뮬레이터</a>
+            <a href="#products" class="text-gray-300 hover:text-electricCyan py-2 border-b border-white/5 font-semibold" onclick="document.getElementById('mobile-menu').classList.add('hidden')">제조물품</a>
+            <a href="#media-center" class="text-gray-300 hover:text-electricCyan py-2 border-b border-white/5 font-semibold" onclick="document.getElementById('mobile-menu').classList.add('hidden')">미디어센터</a>
+            <a href="#internal-portal" class="text-emerald-400 hover:text-electricCyan py-2 border-b border-white/5 font-semibold" onclick="document.getElementById('mobile-menu').classList.add('hidden')">사내포털 (AI/일정)</a>
+            <button onclick="openBrochureModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold py-3 rounded-lg shadow-neon-green mt-2 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-book-open"></i> 브로슈어 2면뷰어 열기
+            </button>
+            <button onclick="openPdfModal('all'); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full bg-gradient-to-r from-neonBlue to-blue-600 text-white font-bold py-3 rounded-lg shadow-neon flex items-center justify-center gap-2">
+                <i class="fa-solid fa-file-pdf"></i> 지명원 전체보기
+            </button>
         </div>
-      </div>
-      <div class="relative group">
-        <div class="absolute -inset-4 bg-gradient-to-tr from-blue-500 to-cyan-400 rounded-[3rem] blur-2xl opacity-20 group-hover:opacity-30 transition duration-1000"></div>
-        <div class="relative tech-card bg-gray-900 border-none text-white overflow-hidden">
-          <div class="absolute top-0 right-0 p-10 opacity-10"><i class="fas fa-map-marked-alt text-[150px]"></i></div>
-          <h4 class="text-2xl font-black mb-6">Location</h4>
-          <p class="text-blue-200 text-lg mb-10 leading-relaxed">강원특별자치도 춘천시<br>퇴계공단2길 64 (퇴계제2농공단지)</p>
-          <a href="https://map.naver.com/p/search/%EA%B0%95%EC%9B%90%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84%20%EC%B6%98%EC%B2%9C%EC%8B%9C%20%ED%87%B4%EA%B3%84%EA%B3%B5%EB%8B%A82%EA%B8%B8%2064" target="_blank" class="flex items-center justify-between bg-blue-600 p-5 rounded-2xl font-bold hover:bg-blue-500 transition">지도에서 위치 확인 <i class="fas fa-external-link-alt"></i></a>
+    </header>
+
+    <!-- 1. Cinematic Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Cinematic Background Video (자동 재생 및 무한 반복) -->
+        <div class="absolute inset-0 z-0">
+            <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-30 scale-105" id="hero-video">
+                <source src="batechppl.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-navy-950 via-transparent to-navy-950"></div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ═══════════════════════════════════════ -->
-<!--              HISTORY                   -->
-<!-- ═══════════════════════════════════════ -->
-<section id="history" class="py-32 px-10 bg-gray-50/50">
-  <div class="max-w-5xl mx-auto">
-    <div class="text-center mb-20"><h3 class="text-4xl font-black text-gray-900 mb-4">History</h3><p class="text-gray-400 font-medium">비에이텍이 걸어온 혁신의 발자취입니다.</p></div>
-    <div class="space-y-6">
-      <div class="tech-card border-l-8 border-l-blue-600"><div class="flex flex-col md:flex-row gap-8"><div class="text-4xl font-black text-blue-600 opacity-30 w-32">2025</div><div class="flex-1 space-y-2"><p class="font-bold text-lg">• KC 위생안전기준 인증 취득 (한국물기술인증원, KCW-2025-0163)</p></div></div></div>
-      <div class="tech-card border-l-8 border-l-blue-500"><div class="flex flex-col md:flex-row gap-8"><div class="text-4xl font-black text-blue-500 opacity-30 w-32">2024</div><div class="flex-1 space-y-2"><p class="font-bold text-lg">• ISO 9001:2015 품질경영시스템 인증 취득 (ICR, QI291124)</p><p class="font-bold text-lg">• 경영혁신형 중소기업(Main-Biz) 인증 취득</p></div></div></div>
-      <div class="tech-card border-l-8 border-l-gray-300"><div class="flex flex-col md:flex-row gap-8"><div class="text-4xl font-black text-gray-300 w-32">2023</div><div class="flex-1 space-y-2"><p class="font-bold text-lg">• 직접생산확인증명서 취득 (펌프류 11종)</p><p class="font-bold text-lg">• 퇴계제2농공단지 공장 등록</p></div></div></div>
-      <div class="tech-card border-l-8 border-l-gray-300"><div class="flex flex-col md:flex-row gap-8"><div class="text-4xl font-black text-gray-300 w-32">2017</div><div class="flex-1"><p class="font-bold text-lg">• 강원도지사 표창 수상 (상수도 관리 활동 공로)</p></div></div></div>
-      <div class="tech-card border-l-8 border-l-gray-300"><div class="flex flex-col md:flex-row gap-8"><div class="text-4xl font-black text-gray-300 w-32">2010</div><div class="flex-1"><p class="font-bold text-lg">• 비에이텍(주) 법인 설립 (11월)</p></div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════ -->
-<!--              PRODUCTS                  -->
-<!-- ═══════════════════════════════════════ -->
-<section id="products" class="py-32 px-10">
-  <div class="max-w-7xl mx-auto">
-    <div class="flex justify-between items-center mb-16">
-      <h3 class="text-4xl font-black">Lineup</h3>
-      <button onclick="openJiPdf(7)" class="text-blue-600 font-black flex items-center gap-2 hover:gap-4 transition-all">VIEW CATALOG <i class="fas fa-arrow-right"></i></button>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" id="p-grid"></div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════ -->
-<!--            CREDENTIALS                 -->
-<!-- ═══════════════════════════════════════ -->
-<section id="certs" class="py-32 px-10 bg-gray-900 rounded-[4rem] m-6">
-  <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-10">
-      <div class="text-white"><h3 class="text-4xl font-black mb-4">Credentials</h3><p class="text-gray-400">기술력을 보증하는 비에이텍의 인증 현황입니다.</p></div>
-      <div class="h-1 bg-blue-600 flex-1 mx-10 hidden md:block opacity-20"></div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="c-grid"></div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════ -->
-<!--            홍보영상                     -->
-<!-- ═══════════════════════════════════════ -->
-<section id="video" class="py-32 px-10">
-  <div class="max-w-5xl mx-auto">
-    <div class="mb-12">
-      <p class="text-sm font-black text-blue-600 tracking-[0.3em] uppercase mb-3">Promotional Video</p>
-      <h2 class="text-4xl font-black text-gray-900">홍보영상</h2>
-      <p class="text-gray-400 mt-2">비에이텍(주)의 기술력과 제품을 영상으로 만나보세요.</p>
-    </div>
-    <div class="video-wrap">
-      <video
-        src="batechppl.mp4"
-        autoplay muted loop playsinline
-        class="w-full rounded-3xl"
-        style="max-height:600px;object-fit:cover;"
-        onerror="this.parentElement.innerHTML='<div style=\'display:flex;flex-direction:column;align-items:center;justify-content:center;background:#111827;border-radius:1.5rem;padding:6rem 2rem;color:#6b7280;text-align:center\'><i class=\'fas fa-video-slash\' style=\'font-size:3rem;margin-bottom:1rem\'></i><p style=\'font-weight:700\'>batechppl.mp4 파일을 같은 폴더에 넣어 주세요</p></div>'"
-      ></video>
-      <div class="absolute bottom-6 left-6 pointer-events-none">
-        <div class="bg-black/60 backdrop-blur-md rounded-2xl px-5 py-3">
-          <p class="text-white font-black text-sm">비에이텍(주) 홍보영상</p>
-          <p class="text-blue-300 text-xs">Advanced Pumping Solutions</p>
+        <div class="max-w-7xl mx-auto px-6 w-full text-center relative z-10 pt-20">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 border border-electricCyan/30 bg-electricCyan/5 rounded-full text-sm font-semibold mb-8 text-electricCyan shadow-neon tracking-wide uppercase font-outfit animate-pulse">
+                <i class="fa-solid fa-shield-halved"></i> Hyper-Precision Water Pump Solutions
+            </div>
+            
+            <h1 class="text-4xl md:text-7xl font-extrabold mb-8 leading-tight tracking-tight text-white drop-shadow-2xl">
+                깨끗한 물의 흐름을 만드는<br class="hidden md:block">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-electricCyan via-neonBlue to-blue-500 font-extrabold neon-glow">
+                    독보적 스마트 기술력
+                </span>
+            </h1>
+            
+            <p class="text-lg md:text-2xl mb-12 text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">
+                신뢰할 수 있는 하이테크 제조 역량으로 어떠한 극한의 산업 환경에서도<br class="hidden sm:block">
+                완벽히 제어되는 워터 펌프 및 친환경 스마트 수처리 솔루션을 구축합니다.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <a href="#about" class="w-full sm:w-auto px-10 py-5 bg-gradient-to-r from-neonBlue to-blue-600 hover:from-electricCyan hover:to-neonBlue text-white font-extrabold rounded-2xl transition duration-300 shadow-neon hover:shadow-neon-strong text-center transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                    기술 혁신 알아보기 <i class="fa-solid fa-arrow-down"></i>
+                </a>
+                <button onclick="openBrochureModal()" class="w-full sm:w-auto px-10 py-5 bg-white/5 hover:bg-white/10 border border-white/20 hover:border-emerald-400/50 text-white font-extrabold rounded-2xl transition duration-300 backdrop-blur-md text-center transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-book-open text-emerald-400"></i> 브로슈어 2면뷰어 열기
+                </button>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ═══════════════════════════════════════ -->
-<!--            카드뉴스                     -->
-<!-- ═══════════════════════════════════════ -->
-<section id="cardnews" class="py-32 px-10 bg-gray-50/60">
-  <div class="max-w-7xl mx-auto">
-    <div class="mb-12">
-      <p class="text-sm font-black text-blue-600 tracking-[0.3em] uppercase mb-3">Card News</p>
-      <h2 class="text-4xl font-black text-gray-900">카드뉴스</h2>
-      <p class="text-gray-400 mt-2">마우스를 올리면 확대됩니다.</p>
-    </div>
-    <div class="card-news-grid grid gap-6" style="grid-template-columns:repeat(4,1fr);">
-      <div class="card-news-item shadow-lg bg-gray-100" style="aspect-ratio:1/1;">
-        <img src="1.png" alt="카드뉴스 1" class="w-full h-full object-cover"
-          onerror="this.outerHTML='<div style=\'display:flex;flex-direction:column;align-items:center;justify-content:center;background:#eff6ff;height:100%;color:#93c5fd;\'><i class=\'fas fa-image\' style=\'font-size:2.5rem;margin-bottom:.5rem\'></i><p style=\'font-size:.75rem;font-weight:700\'>1.png</p></div>'"/>
-      </div>
-      <div class="card-news-item shadow-lg bg-gray-100" style="aspect-ratio:1/1;">
-        <img src="2.png" alt="카드뉴스 2" class="w-full h-full object-cover"
-          onerror="this.outerHTML='<div style=\'display:flex;flex-direction:column;align-items:center;justify-content:center;background:#eff6ff;height:100%;color:#93c5fd;\'><i class=\'fas fa-image\' style=\'font-size:2.5rem;margin-bottom:.5rem\'></i><p style=\'font-size:.75rem;font-weight:700\'>2.png</p></div>'"/>
-      </div>
-      <div class="card-news-item shadow-lg bg-gray-100" style="aspect-ratio:1/1;">
-        <img src="3.png" alt="카드뉴스 3" class="w-full h-full object-cover"
-          onerror="this.outerHTML='<div style=\'display:flex;flex-direction:column;align-items:center;justify-content:center;background:#eff6ff;height:100%;color:#93c5fd;\'><i class=\'fas fa-image\' style=\'font-size:2.5rem;margin-bottom:.5rem\'></i><p style=\'font-size:.75rem;font-weight:700\'>3.png</p></div>'"/>
-      </div>
-      <div class="card-news-item shadow-lg bg-gray-100" style="aspect-ratio:1/1;">
-        <img src="4.png" alt="카드뉴스 4" class="w-full h-full object-cover"
-          onerror="this.outerHTML='<div style=\'display:flex;flex-direction:column;align-items:center;justify-content:center;background:#eff6ff;height:100%;color:#93c5fd;\'><i class=\'fas fa-image\' style=\'font-size:2.5rem;margin-bottom:.5rem\'></i><p style=\'font-size:.75rem;font-weight:700\'>4.png</p></div>'"/>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════ -->
-<!--       브로슈어 2페이지 펼침 뷰어        -->
-<!-- ═══════════════════════════════════════ -->
-<section id="brochure" class="py-32 px-10">
-  <div class="max-w-7xl mx-auto">
-    <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
-      <div>
-        <p class="text-sm font-black text-blue-600 tracking-[0.3em] uppercase mb-3">Company Brochure</p>
-        <h2 class="text-4xl font-black text-gray-900">브로슈어</h2>
-        <p class="text-gray-400 mt-2">비에이텍(주) 회사 소개 브로슈어 — 2페이지 펼침 보기</p>
-      </div>
-      <div class="flex gap-3">
-        <a href="batechintro.pdf" download class="flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-500 transition"><i class="fas fa-download"></i> 다운로드</a>
-        <a href="batechintro.pdf" target="_blank" class="flex items-center gap-2 px-5 py-2.5 border border-gray-200 rounded-xl text-sm font-bold text-gray-600 hover:border-blue-400 hover:text-blue-600 transition"><i class="fas fa-external-link-alt"></i> 새 탭</a>
-      </div>
-    </div>
-
-    <div class="tech-card p-0 overflow-hidden">
-      <!-- Toolbar -->
-      <div class="bg-gray-900 px-6 py-4 flex items-center gap-4 flex-wrap">
-        <span class="text-white font-black text-xs tracking-widest">BROCHURE VIEWER</span>
-        <div class="flex items-center gap-2 bg-white/10 rounded-xl px-4 py-2 text-xs font-bold text-white">
-          <button onclick="brochurePrev()" class="hover:text-blue-400 transition px-1"><i class="fas fa-chevron-left"></i></button>
-          <span id="bPageNum"  class="w-8 text-center text-blue-400">1</span>
-          <span class="opacity-40">–</span>
-          <span id="bPageNum2" class="w-8 text-center text-blue-400">2</span>
-          <span class="opacity-40">/</span>
-          <span id="bTotal"    class="w-8 text-center opacity-60">–</span>
-          <button onclick="brochureNext()" class="hover:text-blue-400 transition px-1"><i class="fas fa-chevron-right"></i></button>
+        <!-- Scroll Indicator Mouse -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 opacity-70 hover:opacity-100 transition-opacity">
+            <span class="text-[10px] text-gray-400 font-light uppercase tracking-widest font-outfit">Scroll Down</span>
+            <div class="w-[24px] h-[40px] border-2 border-electricCyan/50 rounded-full flex justify-center p-1.5">
+                <div class="w-[4px] h-[8px] bg-electricCyan rounded-full animate-bounce"></div>
+            </div>
         </div>
-        <button onclick="brochureZoom(-0.2)" class="text-white/60 hover:text-white bg-white/10 rounded-lg px-3 py-1.5 text-xs font-bold">－</button>
-        <span id="bZoom" class="text-white text-xs font-bold">120%</span>
-        <button onclick="brochureZoom(0.2)"  class="text-white/60 hover:text-white bg-white/10 rounded-lg px-3 py-1.5 text-xs font-bold">＋</button>
-      </div>
+    </section>
 
-      <!-- Loading -->
-      <div id="brochure-loading" class="flex flex-col items-center justify-center py-20 bg-gray-100">
-        <div class="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-4"></div>
-        <p class="text-xs text-gray-400 font-bold tracking-widest">LOADING BROCHURE...</p>
-      </div>
-      <!-- Error -->
-      <div id="brochure-error" style="display:none;" class="flex flex-col items-center justify-center py-16 bg-gray-50 text-center px-8">
-        <i class="fas fa-file-circle-exclamation text-5xl text-gray-300 mb-4"></i>
-        <p class="font-bold text-gray-500 mb-1">batechintro.pdf를 불러올 수 없습니다</p>
-        <p class="text-xs text-gray-400">파일을 같은 폴더에 넣고 웹 서버(Live Server)로 실행해 주세요</p>
-      </div>
-      <!-- Spread -->
-      <div id="brochure-spread">
-        <div id="spread-left"><canvas id="canvas-left"></canvas></div>
-        <div id="spread-right"><canvas id="canvas-right"></canvas></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════ -->
-<!--          이번달 행사 캘린더             -->
-<!-- ═══════════════════════════════════════ -->
-<section id="calendar" class="py-32 px-10 bg-gray-50/60">
-  <div class="max-w-5xl mx-auto">
-    <div class="mb-12">
-      <p class="text-sm font-black text-blue-600 tracking-[0.3em] uppercase mb-3">Internal Schedule</p>
-      <h2 class="text-4xl font-black text-gray-900" id="cal-title">이번달 일정</h2>
-      <p class="text-gray-400 mt-2">팀 공유 캘린더 — 주요 일정을 한눈에 확인하세요.</p>
-    </div>
-    <div class="flex flex-wrap gap-4 mb-6">
-      <div class="flex items-center gap-2 text-xs font-bold"><span class="w-3 h-3 rounded-full bg-blue-500 inline-block"></span>정기회의</div>
-      <div class="flex items-center gap-2 text-xs font-bold"><span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>사내행사</div>
-      <div class="flex items-center gap-2 text-xs font-bold"><span class="w-3 h-3 rounded-full bg-pink-500 inline-block"></span>생일 🎂</div>
-    </div>
-    <div class="tech-card p-6">
-      <div class="grid grid-cols-7 gap-1 mb-2">
-        <div class="text-center text-xs font-black text-red-400 py-2">일</div>
-        <div class="text-center text-xs font-black text-gray-500 py-2">월</div>
-        <div class="text-center text-xs font-black text-gray-500 py-2">화</div>
-        <div class="text-center text-xs font-black text-gray-500 py-2">수</div>
-        <div class="text-center text-xs font-black text-gray-500 py-2">목</div>
-        <div class="text-center text-xs font-black text-gray-500 py-2">금</div>
-        <div class="text-center text-xs font-black text-blue-400 py-2">토</div>
-      </div>
-      <div class="grid grid-cols-7 gap-1" id="cal-grid"></div>
-    </div>
-    <div class="mt-8">
-      <h4 class="font-black text-gray-900 mb-4">📌 이번달 주요 일정</h4>
-      <div id="event-list" class="space-y-3"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════ -->
-<!--       오늘의 AI 팁 — NotebookLM        -->
-<!-- ═══════════════════════════════════════ -->
-<section id="aitips" class="py-32 px-10">
-  <div class="max-w-5xl mx-auto">
-    <div class="mb-12">
-      <p class="text-sm font-black text-indigo-500 tracking-[0.3em] uppercase mb-3">Today's AI Insight</p>
-      <h2 class="text-4xl font-black text-gray-900">오늘의 알짜 AI 정보</h2>
-      <p class="text-gray-400 mt-2">직원 여러분을 위한 실무 AI 활용 가이드 — Google NotebookLM 특집</p>
+    <!-- Transition Waves -->
+    <div class="wave-container">
+        <svg class="wave-svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,60 C150,90 350,30 500,60 C650,90 850,30 1000,60 C1150,90 1350,30 1500,60 L1500,120 L0,120 Z"></path>
+        </svg>
+        <svg class="wave-svg wave-2" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,40 C100,70 250,20 400,50 C550,80 700,30 850,60 C1000,90 1150,40 1300,70 L1300,120 L0,120 Z"></path>
+        </svg>
     </div>
 
-    <!-- Hero card -->
-    <div class="ai-card p-8 md:p-10 mb-8">
-      <div class="flex items-start gap-6 mb-8">
-        <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center text-white text-2xl flex-shrink-0">🧠</div>
-        <div>
-          <div class="text-indigo-400 text-xs font-black tracking-widest uppercase mb-1">이번 주 주목 도구</div>
-          <h3 class="text-white text-2xl font-black mb-1">Google NotebookLM</h3>
-          <p class="text-gray-400 text-sm">AI가 우리 회사 문서를 읽고 답변해주는 비서</p>
+    <!-- MAIN BODY -->
+    <main class="space-y-48 pb-32">
+
+        <!-- 2. BA Tech In Numbers -->
+        <section class="max-w-7xl mx-auto px-6 relative" id="numbers">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-panel rounded-3xl p-8 text-center glow-card flex flex-col justify-center items-center shadow-lg border border-white/5 relative overflow-hidden group">
+                    <div class="w-14 h-14 bg-gradient-to-br from-neonBlue/10 to-electricCyan/10 rounded-2xl flex items-center justify-center border border-electricCyan/20 mb-6 text-electricCyan text-2xl group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-truck-ramp-box"></i>
+                    </div>
+                    <span class="text-4xl md:text-5xl font-black text-white font-outfit mb-2 flex items-center gap-1">
+                        <span class="counter-number" data-target="15000">0</span>+
+                    </span>
+                    <p class="text-sm text-gray-400 font-medium">누적 펌프 공급 및 시공</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass-panel rounded-3xl p-8 text-center glow-card flex flex-col justify-center items-center shadow-lg border border-white/5 relative overflow-hidden group">
+                    <div class="w-14 h-14 bg-gradient-to-br from-neonBlue/10 to-electricCyan/10 rounded-2xl flex items-center justify-center border border-electricCyan/20 mb-6 text-electricCyan text-2xl group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-file-shield"></i>
+                    </div>
+                    <span class="text-4xl md:text-5xl font-black text-white font-outfit mb-2 flex items-center gap-1">
+                        <span class="counter-number" data-target="25">0</span>+
+                    </span>
+                    <p class="text-sm text-gray-400 font-medium">원천 특허 및 품질 인증</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass-panel rounded-3xl p-8 text-center glow-card flex flex-col justify-center items-center shadow-lg border border-white/5 relative overflow-hidden group">
+                    <div class="w-14 h-14 bg-gradient-to-br from-neonBlue/10 to-electricCyan/10 rounded-2xl flex items-center justify-center border border-electricCyan/20 mb-6 text-electricCyan text-2xl group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <span class="text-4xl md:text-5xl font-black text-white font-outfit mb-2 flex items-center gap-1">
+                        <span class="counter-number" data-target="34">0</span>%
+                    </span>
+                    <p class="text-sm text-gray-400 font-medium">지능형 펌프 에너지 절감율</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="glass-panel rounded-3xl p-8 text-center glow-card flex flex-col justify-center items-center shadow-lg border border-white/5 relative overflow-hidden group">
+                    <div class="w-14 h-14 bg-gradient-to-br from-neonBlue/10 to-electricCyan/10 rounded-2xl flex items-center justify-center border border-electricCyan/20 mb-6 text-electricCyan text-2xl group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-handshake-angle"></i>
+                    </div>
+                    <span class="text-4xl md:text-5xl font-black text-white font-outfit mb-2 flex items-center gap-1">
+                        <span class="counter-number" data-target="99.9">0</span>%
+                    </span>
+                    <p class="text-sm text-gray-400 font-medium">고객 서비스 만족도</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 핵심 가치 쇼케이스 (3 Core Pillars) -->
+        <section class="max-w-7xl mx-auto px-6" id="pillars">
+            <div class="text-center max-w-3xl mx-auto mb-20 animate-element">
+                <span class="px-4 py-1.5 bg-electricCyan/10 text-electricCyan border border-electricCyan/20 rounded-full text-xs font-bold font-outfit uppercase tracking-widest">Core Pillars</span>
+                <h2 class="text-3xl md:text-5xl font-black text-white mt-6 mb-6 leading-tight">
+                    비에이텍이 추구하는 <br class="sm:hidden"><span class="text-electricCyan neon-glow">3대 혁신 가치</span>
+                </h2>
+                <p class="text-gray-400 font-light">우리는 단순한 기계를 파는 것이 아닌, 생명력을 담은 지속 가능한 물의 가치를 설계합니다.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Pillar 1 -->
+                <div class="glass-panel rounded-3xl p-10 glow-card border border-white/5 flex flex-col items-start hover:-translate-y-2 transition duration-500 relative group overflow-hidden">
+                    <div class="absolute -right-16 -top-16 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl group-hover:bg-emerald-500/20 transition-all duration-500"></div>
+                    <div class="w-16 h-16 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl flex items-center justify-center text-emerald-400 text-3xl mb-8 group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Eco-Friendly <span class="block text-sm text-emerald-400 mt-1 font-light font-outfit">친환경 미래 수자원</span></h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6 font-light">
+                        탄소 배출량 감소와 자원 절약을 최우선으로 합니다. 초고효율 전력 설계 모터와 친환경 세라믹 밀폐 구조를 통해 환경 부하를 영(Zero)으로 수렴시킵니다.
+                    </p>
+                    <ul class="text-xs text-gray-500 space-y-2 mt-auto">
+                        <li><i class="fa-solid fa-circle-check text-emerald-400 mr-2"></i> 고효율 에너지 등급 부합</li>
+                        <li><i class="fa-solid fa-circle-check text-emerald-400 mr-2"></i> 윤활액 누출 완전 방지</li>
+                    </ul>
+                </div>
+                <!-- Pillar 2 -->
+                <div class="glass-panel rounded-3xl p-10 glow-card border border-white/5 flex flex-col items-start hover:-translate-y-2 transition duration-500 relative group overflow-hidden">
+                    <div class="absolute -right-16 -top-16 w-32 h-32 bg-electricCyan/10 rounded-full blur-3xl group-hover:bg-electricCyan/20 transition-all duration-500"></div>
+                    <div class="w-16 h-16 bg-electricCyan/10 border border-electricCyan/20 rounded-2xl flex items-center justify-center text-electricCyan text-3xl mb-8 group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Hyper-Precision <span class="block text-sm text-electricCyan mt-1 font-light font-outfit">초정밀 지능화 제어</span></h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6 font-light">
+                        스마트 센싱 및 IoT 피드백 루프 기술을 결합하여 펌프의 실시간 진동, 압력, 주파수를 측정하고 스스로 운전 성능을 미세하게 자가 조정하는 스마트 솔루션입니다.
+                    </p>
+                    <ul class="text-xs text-gray-500 space-y-2 mt-auto">
+                        <li><i class="fa-solid fa-circle-check text-electricCyan mr-2"></i> 실시간 상태 분석 인버터</li>
+                        <li><i class="fa-solid fa-circle-check text-electricCyan mr-2"></i> 센서 기반 고장 예지</li>
+                    </ul>
+                </div>
+                <!-- Pillar 3 -->
+                <div class="glass-panel rounded-3xl p-10 glow-card border border-white/5 flex flex-col items-start hover:-translate-y-2 transition duration-500 relative group overflow-hidden">
+                    <div class="absolute -right-16 -top-16 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl group-hover:bg-amber-500/20 transition-all duration-500"></div>
+                    <div class="w-16 h-16 bg-amber-500/10 border border-amber-500/20 rounded-2xl flex items-center justify-center text-amber-400 text-3xl mb-8 group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-anchor"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Extreme Durability <span class="block text-sm text-amber-400 mt-1 font-light font-outfit">극한의 내부식 내구력</span></h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6 font-light">
+                        고밀도 주조 기술과 부식에 원천 차단된 특수 합금을 조합하여 염수, 슬러지, 강한 산성 및 화학 물질이 가득한 환경에서도 파손 없는 장기 내구성을 자랑합니다.
+                    </p>
+                    <ul class="text-xs text-gray-500 space-y-2 mt-auto">
+                        <li><i class="fa-solid fa-circle-check text-amber-400 mr-2"></i> 크롬/듀플렉스 특수강 사용</li>
+                        <li><i class="fa-solid fa-circle-check text-amber-400 mr-2"></i> 반영구적 기계적 씰(Seal)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 회사소개 (About - Glassmorphism) -->
+        <section id="about" class="max-w-7xl mx-auto px-6 scroll-mt-32">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <div class="w-full lg:w-1/2 relative group">
+                    <div class="absolute -inset-1.5 bg-gradient-to-r from-neonBlue to-blue-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                    <div class="relative rounded-3xl overflow-hidden glass-panel border border-white/10 p-4">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80" alt="비에이텍 스마트 팩토리" class="rounded-2xl shadow-2xl object-cover w-full h-[400px] transform hover:scale-105 transition duration-700">
+                        <div class="absolute bottom-8 left-8 right-8 glass-panel p-6 rounded-2xl border border-white/10 flex items-center justify-between">
+                            <div class="flex flex-col">
+                                <span class="text-[10px] text-electricCyan uppercase tracking-widest font-outfit">Factory Location</span>
+                                <span class="text-sm font-semibold text-white mt-1">강원 춘천시 퇴계공단 (퇴계농공단지)</span>
+                            </div>
+                            <div class="w-10 h-10 bg-electricCyan/10 rounded-full flex items-center justify-center text-electricCyan"><i class="fa-solid fa-map-pin"></i></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="w-full lg:w-1/2">
+                    <span class="px-4 py-1.5 bg-electricCyan/10 text-electricCyan border border-electricCyan/20 rounded-full text-xs font-bold font-outfit uppercase tracking-widest">Introduction</span>
+                    <h2 class="text-3xl md:text-5xl font-black text-white mt-6 mb-8 leading-tight">
+                        물의 신뢰성을 더하는<br>
+                        <span class="text-electricCyan neon-glow">비에이텍(주)</span>의 저력
+                    </h2>
+                    <p class="text-gray-300 leading-relaxed font-light mb-8">
+                        2010년 창립 이래, (주)비에이텍은 다년간 축적해 온 첨단 펌프 유체 역학 엔지니어링 기술을 바탕으로 지역 상수도망부터 특수 산업용 수처리 설비까지 국가 기간 산업 인프라의 핵심 동력을 지탱해 왔습니다. 
+                        엄격한 품질 테스트와 끊임없는 원천 기술 개발은 비에이텍이 국내 최고 수준의 신뢰를 획득할 수 있었던 기반입니다.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="glass-panel p-4 rounded-2xl border border-white/5">
+                            <span class="text-xs text-gray-500 block">설립년도</span>
+                            <span class="text-lg font-bold text-white mt-1 block">2010년 11월 1일</span>
+                        </div>
+                        <div class="glass-panel p-4 rounded-2xl border border-white/5">
+                            <span class="text-xs text-gray-500 block">주요 업종</span>
+                            <span class="text-lg font-bold text-white mt-1 block">펌프 제조, 도매, 시공</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-4">
+                        <button onclick="openBrochureModal()" class="bg-gradient-to-r from-emerald-500/20 to-teal-600/20 hover:from-emerald-500 hover:to-teal-600 border border-emerald-400/30 hover:border-transparent text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2">
+                            <i class="fa-regular fa-file-pdf"></i> 회사소개 상세 PDF (4p)
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 회사 스펙 데이터 테이블 -->
+            <div class="mt-20 glass-panel rounded-3xl overflow-hidden border border-white/5">
+                <div class="p-8 border-b border-white/5 bg-white/5 flex items-center justify-between">
+                    <h4 class="font-bold text-white text-lg"><i class="fa-solid fa-circle-info text-electricCyan mr-2"></i> 기업 표준 사양 및 정보</h4>
+                    <span class="text-xs text-gray-400">지명원 4p 기준</span>
+                </div>
+                <div class="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-white/5">
+                    <div class="p-8 space-y-4">
+                        <div class="flex justify-between py-2 border-b border-white/5"><span class="text-gray-400">회사명</span><span class="text-white font-bold">비에이텍(주)</span></div>
+                        <div class="flex justify-between py-2 border-b border-white/5"><span class="text-gray-400">대표이사</span><span class="text-white">조세연</span></div>
+                        <div class="flex justify-between py-2 border-b border-white/5"><span class="text-gray-400">설립일</span><span class="text-white">2010. 11. 01</span></div>
+                        <div class="flex justify-between py-2"><span class="text-gray-400">사업자등록번호</span><span class="text-white font-mono">221-81-42625</span></div>
+                    </div>
+                    <div class="p-8 space-y-4">
+                        <div class="flex justify-between py-2 border-b border-white/5"><span class="text-gray-400">주요 생산물</span><span class="text-white font-bold">모터펌프, 수처리설비, 계장반</span></div>
+                        <div class="flex justify-between py-2 border-b border-white/5"><span class="text-gray-400">본사 및 공장</span><span class="text-white text-right text-sm">강원 춘천시 퇴계공단2길 64</span></div>
+                        <div class="flex justify-between py-2 border-b border-white/5"><span class="text-gray-400">대표전화</span><span class="text-white">(033) 264-9243</span></div>
+                        <div class="flex justify-between py-2"><span class="text-gray-400">팩스번호</span><span class="text-white">(033) 251-5747</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 스마트 펌프 에너지 & 유량 시뮬레이터 (펌프 회전 애니메이션 연동 완료) -->
+        <section id="simulator" class="max-w-7xl mx-auto px-6 scroll-mt-32">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="px-4 py-1.5 bg-electricCyan/10 text-electricCyan border border-electricCyan/20 rounded-full text-xs font-bold font-outfit uppercase tracking-widest">Interactive Sandbox</span>
+                <h2 class="text-3xl md:text-5xl font-black text-white mt-6 mb-6 leading-tight">
+                    스마트 펌프 <span class="text-electricCyan neon-glow">압력 & 유량 시뮬레이터</span>
+                </h2>
+                <p class="text-gray-400 font-light">가상의 유체 배관에 가해지는 압력과 펌프의 회전 주파수를 제어하여 실시간 유체 속도 변화와 지능형 전력 효율(Inverter Energy Saving)을 확인해 보세요.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Control Panel -->
+                <div class="glass-panel rounded-3xl p-8 border border-white/10 lg:col-span-1 flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-extrabold text-white text-lg mb-6"><i class="fa-solid fa-sliders text-electricCyan mr-2"></i> 모터 주파수 및 압력 제어</h4>
+                        
+                        <!-- Control 1: flow rate (Frequency) -->
+                        <div class="mb-8">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm text-gray-400">펌프 운전 주파수 (Frequency)</span>
+                                <span class="text-sm text-electricCyan font-bold" id="val-freq">45 Hz</span>
+                            </div>
+                            <input type="range" id="slider-freq" min="20" max="60" value="45" class="w-full h-2 bg-navy-800 rounded-lg appearance-none cursor-pointer accent-electricCyan">
+                            <div class="flex justify-between text-[10px] text-gray-500 mt-1">
+                                <span>20 Hz (최저)</span>
+                                <span>60 Hz (최고)</span>
+                            </div>
+                        </div>
+
+                        <!-- Control 2: pressure (Valve opening / load) -->
+                        <div class="mb-8">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm text-gray-400">배관 내부 압력 부하 (Load/Pressure)</span>
+                                <span class="text-sm text-electricCyan font-bold" id="val-press">4.5 Bar</span>
+                            </div>
+                            <input type="range" id="slider-press" min="1" max="10" step="0.5" value="4.5" class="w-full h-2 bg-navy-800 rounded-lg appearance-none cursor-pointer accent-electricCyan">
+                            <div class="flex justify-between text-[10px] text-gray-500 mt-1">
+                                <span>1 Bar (부하 무)</span>
+                                <span>10 Bar (극한 부하)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Energy Efficiency Metrics Display -->
+                    <div class="bg-navy-950/60 rounded-2xl p-6 border border-white/5 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-400">현재 예측 전력 소비량</span>
+                            <span class="text-lg font-bold text-white font-outfit" id="metric-power">7.8 kW</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-400">일반 정속 펌프 대비 절감률</span>
+                            <span class="text-lg font-bold text-emerald-400 font-outfit animate-pulse" id="metric-saving">38.4%</span>
+                        </div>
+                        <!-- Alert lamp -->
+                        <div class="border-t border-white/5 pt-4 flex items-center justify-between" id="alert-zone">
+                            <span class="text-xs text-gray-400">시스템 안전 진단</span>
+                            <span class="flex items-center gap-1.5 text-xs text-emerald-400 font-semibold" id="sys-status">
+                                <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-ping"></span> 안정 운전 중
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Pipeline Visualization Canvas -->
+                <div class="glass-panel rounded-3xl p-6 border border-white/10 lg:col-span-2 flex flex-col relative overflow-hidden bg-navy-950/20">
+                    <div class="flex justify-between items-center mb-4 z-10">
+                        <span class="text-xs text-gray-400 font-semibold uppercase tracking-wider"><i class="fa-solid fa-network-wired text-electricCyan mr-1.5"></i> Flow & Pressure Live Rendering</span>
+                        <div class="flex gap-2">
+                            <span class="px-2 py-0.5 bg-white/5 rounded text-[10px] text-gray-400">유량: <span id="flow-display">350</span> L/min</span>
+                            <span class="px-2 py-0.5 bg-white/5 rounded text-[10px] text-gray-400">주파수 비례 속도</span>
+                        </div>
+                    </div>
+
+                    <!-- Pipeline Canvas Container (가운데 펌프 기계 이미지 회전 적용) -->
+                    <div class="flex-1 w-full min-h-[300px] bg-navy-950/80 rounded-2xl relative border border-white/5 overflow-hidden">
+                        <canvas id="flowCanvas" class="w-full h-full block"></canvas>
+                        
+                        <!-- High Pressure Overlay -->
+                        <div class="absolute inset-0 bg-red-500/10 pointer-events-none opacity-0 transition-opacity duration-300" id="overload-overlay"></div>
+                        <div class="absolute top-4 left-4 glass-panel px-4 py-2 rounded-xl border border-red-500/30 text-red-500 font-bold text-xs hidden animate-pulse" id="overload-warning">
+                            <i class="fa-solid fa-triangle-exclamation mr-1"></i> 과압 발생! 주파수를 줄여 정격 압력을 맞추십시오.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. 제조물품 리스트 -->
+        <section id="products" class="max-w-7xl mx-auto px-6 scroll-mt-32">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <span class="px-4 py-1.5 bg-electricCyan/10 text-electricCyan border border-electricCyan/20 rounded-full text-xs font-bold font-outfit uppercase tracking-widest">Product Catalog</span>
+                    <h2 class="text-3xl md:text-5xl font-black text-white mt-6 mb-2 leading-tight">
+                        비에이텍 <span class="text-electricCyan neon-glow">제조 물품 라인업</span>
+                    </h2>
+                    <p class="text-gray-400 font-light">정교한 성능과 극한의 수명 신뢰도를 보장하는 펌프 라인업입니다.</p>
+                </div>
+                <button onclick="openPdfModal(8)" class="bg-gradient-to-r from-neonBlue to-blue-600 hover:from-electricCyan hover:to-neonBlue text-white px-6 py-3.5 rounded-xl font-bold shadow-neon transition duration-300 flex items-center gap-2 transform hover:-translate-y-1">
+                    <i class="fa-solid fa-file-pdf"></i> 카탈로그/지명원 제품 페이지 (8p)
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- P1 -->
+                <div class="glass-panel rounded-3xl p-6 border border-white/5 flex flex-col hover:border-electricCyan/40 transition duration-500 relative group glow-card">
+                    <div class="w-14 h-14 bg-electricCyan/10 border border-electricCyan/20 rounded-2xl flex items-center justify-center text-electricCyan text-2xl mb-6 group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-fan animate-spin" style="animation-duration: 6s;"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">다단 벌류트 펌프</h4>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed mb-4">
+                        다층구조 임펠러를 이용해 강력한 고압으로 고층 건물 공급, 발전소 급수, 정수장에 최고 압력을 제공합니다.
+                    </p>
+                    <span class="text-[10px] text-electricCyan/60 font-semibold font-outfit mt-auto"><i class="fa-solid fa-tags mr-1"></i> 볼류트형 / 고압용</span>
+                </div>
+                <!-- P2 -->
+                <div class="glass-panel rounded-3xl p-6 border border-white/5 flex flex-col hover:border-electricCyan/40 transition duration-500 relative group glow-card">
+                    <div class="w-14 h-14 bg-electricCyan/10 border border-electricCyan/20 rounded-2xl flex items-center justify-center text-electricCyan text-2xl mb-6 group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-circle-notch"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">단단 벌류트 펌프</h4>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed mb-4">
+                        단일 스테이지 임펠러 구조로 설계되어 농업용 취수 시설, 냉각수 순환, 일반 급배수에서 부드럽고 풍부한 유량을 공급합니다.
+                    </p>
+                    <span class="text-[10px] text-electricCyan/60 font-semibold font-outfit mt-auto"><i class="fa-solid fa-tags mr-1"></i> 표준 범용 / 정밀 순환</span>
+                </div>
+                <!-- P3 -->
+                <div class="glass-panel rounded-3xl p-6 border border-white/5 flex flex-col hover:border-electricCyan/40 transition duration-500 relative group glow-card">
+                    <div class="w-14 h-14 bg-electricCyan/10 border border-electricCyan/20 rounded-2xl flex items-center justify-center text-electricCyan text-2xl mb-6 group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-arrows-split-up-and-left"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">양흡입 벌류트 펌프</h4>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed mb-4">
+                        임펠러 양측에서 동시에 물을 흡입하여 균형 잡힌 고용량 유체 이송을 통해 침수 방지 유수지 펌프장 및 대형 취수장에서 안전하게 작동합니다.
+                    </p>
+                    <span class="text-[10px] text-electricCyan/60 font-semibold font-outfit mt-auto"><i class="fa-solid fa-tags mr-1"></i> 초고유량 / 양방향 흡입</span>
+                </div>
+                <!-- P4 -->
+                <div class="glass-panel rounded-3xl p-6 border border-white/5 flex flex-col hover:border-electricCyan/40 transition duration-500 relative group glow-card">
+                    <div class="w-14 h-14 bg-electricCyan/10 border border-electricCyan/20 rounded-2xl flex items-center justify-center text-electricCyan text-2xl mb-6 group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">수중 / 사류 펌프</h4>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed mb-4">
+                        물속에 완전히 잠겨서 구동되는 모터와 내진성 씰을 결합하여 지하 수조, 상하수 관로 이송, 고점도 하수 유량 제어에 우수합니다.
+                    </p>
+                    <span class="text-[10px] text-electricCyan/60 font-semibold font-outfit mt-auto"><i class="fa-solid fa-tags mr-1"></i> 수중 배치 / 고내마모성</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. 미디어 센터 (카드뉴스 4장 마우스 호버 확대 애니메이션 탑재) -->
+        <section id="media-center" class="max-w-7xl mx-auto px-6 scroll-mt-32">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="px-4 py-1.5 bg-electricCyan/10 text-electricCyan border border-electricCyan/20 rounded-full text-xs font-bold font-outfit uppercase tracking-widest">Media Center</span>
+                <h2 class="text-3xl md:text-5xl font-black text-white mt-6 mb-6 leading-tight">
+                    비에이텍 <span class="text-electricCyan neon-glow">브랜드 홍보 카드뉴스</span>
+                </h2>
+                <p class="text-gray-400 font-light">마우스를 카드뉴스 이미지에 올리면 입체적인 발광 효과와 함께 부드럽게 확대됩니다.</p>
+            </div>
+
+            <!-- 카드뉴스 4장 그리드 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-panel rounded-3xl overflow-hidden border border-white/5 hover:border-electricCyan/40 transition duration-500 group relative shadow-lg">
+                    <div class="overflow-hidden aspect-square bg-navy-950 flex items-center justify-center">
+                        <img src="1.png" alt="카드뉴스 1장" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-108">
+                    </div>
+                    <div class="p-6 bg-navy-900/60 border-t border-white/5">
+                        <span class="text-[10px] text-electricCyan font-bold tracking-widest uppercase">Page 01</span>
+                        <h4 class="text-white font-bold mt-1 text-sm">첨단 워터테크 개요</h4>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass-panel rounded-3xl overflow-hidden border border-white/5 hover:border-electricCyan/40 transition duration-500 group relative shadow-lg">
+                    <div class="overflow-hidden aspect-square bg-navy-950 flex items-center justify-center">
+                        <img src="2.png" alt="카드뉴스 2장" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-108">
+                    </div>
+                    <div class="p-6 bg-navy-900/60 border-t border-white/5">
+                        <span class="text-[10px] text-electricCyan font-bold tracking-widest uppercase">Page 02</span>
+                        <h4 class="text-white font-bold mt-1 text-sm">핵심 가치 및 핵심 역량</h4>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass-panel rounded-3xl overflow-hidden border border-white/5 hover:border-electricCyan/40 transition duration-500 group relative shadow-lg">
+                    <div class="overflow-hidden aspect-square bg-navy-950 flex items-center justify-center">
+                        <img src="3.png" alt="카드뉴스 3장" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-108">
+                    </div>
+                    <div class="p-6 bg-navy-900/60 border-t border-white/5">
+                        <span class="text-[10px] text-electricCyan font-bold tracking-widest uppercase">Page 03</span>
+                        <h4 class="text-white font-bold mt-1 text-sm">임펠러 가공 기술</h4>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="glass-panel rounded-3xl overflow-hidden border border-white/5 hover:border-electricCyan/40 transition duration-500 group relative shadow-lg">
+                    <div class="overflow-hidden aspect-square bg-navy-950 flex items-center justify-center">
+                        <img src="4.png" alt="카드뉴스 4장" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-108">
+                    </div>
+                    <div class="p-6 bg-navy-900/60 border-t border-white/5">
+                        <span class="text-[10px] text-electricCyan font-bold tracking-widest uppercase">Page 04</span>
+                        <h4 class="text-white font-bold mt-1 text-sm">성능 시험 및 직접생산</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. [신설] 비에이텍 사내 포털 구역 (NotebookLM AI 가이드 & 사내 캘린더) -->
+        <section id="internal-portal" class="max-w-7xl mx-auto px-6 scroll-mt-32">
+            <div class="glass-panel rounded-[40px] border border-white/10 overflow-hidden relative p-8 md:p-16 bg-navy-900/30">
+                <div class="absolute -right-24 -top-24 w-96 h-96 bg-emerald-500/10 rounded-full blur-[100px] z-0"></div>
+                <div class="absolute -left-24 -bottom-24 w-96 h-96 bg-neonBlue/10 rounded-full blur-[100px] z-0"></div>
+
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 mb-8">
+                        <span class="px-4 py-1.5 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5">
+                            <span class="w-2 h-2 bg-emerald-400 rounded-full animate-ping"></span> INTERNAL PORTAL
+                        </span>
+                        <span class="text-gray-500 text-xs font-outfit">Staff Only</span>
+                    </div>
+
+                    <h2 class="text-3xl md:text-5xl font-black text-white mb-12">
+                        비에이텍 임직원 전용 <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-electricCyan">스마트 생산성 협업 광장</span>
+                    </h2>
+
+                    <!-- 2열 배치: AI 가이드 & 스마트 일정 캘린더 -->
+                    <div class="grid lg:grid-cols-12 gap-12 items-start">
+                        
+                        <!-- 구역 A: NotebookLM 사용 가이드 (7/12) -->
+                        <div class="lg:col-span-7 space-y-6">
+                            <div class="flex items-center gap-2 text-white font-bold text-lg border-b border-white/10 pb-3">
+                                <i class="fa-solid fa-brain text-emerald-400"></i>
+                                <h4>오늘의 알짜 AI 정보: <span class="text-electricCyan">NotebookLM</span> 마스터 가이드</h4>
+                            </div>
+                            <p class="text-xs text-gray-400 leading-relaxed font-light">
+                                사내 문서, 제품 규격서(PDF), 설계 도면 가이드 등 무수히 많은 지명원 자료를 AI 엔진에 학습시켜 **개인 맞춤형 지식 도서관**을 구축하는 실무 팁입니다.
+                            </p>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <!-- Guide Card 1 -->
+                                <div class="bg-navy-950/60 p-5 rounded-2xl border border-white/5 hover:border-emerald-500/30 transition">
+                                    <span class="w-7 h-7 bg-emerald-500/10 text-emerald-400 rounded-lg flex items-center justify-center text-xs font-bold mb-3">01</span>
+                                    <h5 class="font-bold text-white text-sm mb-1">복수 자료 동시 탑재</h5>
+                                    <p class="text-xs text-gray-400">지명원 PDF와 CAD 설계 설명서 등 최대 50만 단어 분량의 이종 파일을 업로드하여 원스톱 질의응답이 가능합니다.</p>
+                                </div>
+                                <!-- Guide Card 2 -->
+                                <div class="bg-navy-950/60 p-5 rounded-2xl border border-white/5 hover:border-emerald-500/30 transition">
+                                    <span class="w-7 h-7 bg-emerald-500/10 text-emerald-400 rounded-lg flex items-center justify-center text-xs font-bold mb-3">02</span>
+                                    <h5 class="font-bold text-white text-sm mb-1">인라인 소스 링크 추적</h5>
+                                    <p class="text-xs text-gray-400">답변에 포함된 숫자가 원본 PDF의 몇 페이지(예: 지명원 15p 직접생산확인서)에서 인용되었는지 명확히 짚어줍니다.</p>
+                                </div>
+                                <!-- Guide Card 3 -->
+                                <div class="bg-navy-950/60 p-5 rounded-2xl border border-white/5 hover:border-emerald-500/30 transition">
+                                    <span class="w-7 h-7 bg-emerald-500/10 text-emerald-400 rounded-lg flex items-center justify-center text-xs font-bold mb-3">03</span>
+                                    <h5 class="font-bold text-white text-sm mb-1">오디오 대화 요약 기능</h5>
+                                    <p class="text-xs text-gray-400">텍스트 기반 원천 데이터를 토대로 두 명의 AI 가상 호스트가 라디오 팟캐스트 형태로 생동감 있게 핵심을 읊어줍니다.</p>
+                                </div>
+                                <!-- Guide Card 4 -->
+                                <div class="bg-navy-950/60 p-5 rounded-2xl border border-white/5 hover:border-emerald-500/30 transition">
+                                    <span class="w-7 h-7 bg-emerald-500/10 text-emerald-400 rounded-lg flex items-center justify-center text-xs font-bold mb-3">04</span>
+                                    <h5 class="font-bold text-white text-sm mb-1">메모 저장 및 가이드북 생성</h5>
+                                    <p class="text-xs text-gray-400">수시로 수집된 답변 노트를 취합하여 신규 프로젝트 기획서 초안이나 마케팅 브리프 형태로 즉각 전환해 줍니다.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 구역 B: 이번 달의 사내 행사 캘린더 (5/12) -->
+                        <div class="lg:col-span-5 bg-navy-950/80 rounded-3xl border border-white/10 p-6 shadow-xl">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-4 mb-6">
+                                <span class="font-bold text-white text-base flex items-center gap-2">
+                                    <i class="fa-solid fa-calendar-days text-electricCyan animate-bounce"></i> 이번 달의 행사 캘린더
+                                </span>
+                                <span class="text-xs font-bold font-outfit text-electricCyan uppercase tracking-widest bg-electricCyan/10 px-3 py-1 rounded-full">JUNE 2026</span>
+                            </div>
+
+                            <!-- 캘린더 날짜 테이블 -->
+                            <div class="grid grid-cols-7 gap-y-3 gap-x-2 text-center text-xs font-medium text-gray-400 mb-6">
+                                <div class="text-red-500">일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div class="text-blue-400">토</div>
+                                
+                                <!-- Dummy Days (달력 채우기) -->
+                                <div class="text-gray-700 py-1">31</div>
+                                <div class="text-white py-1 relative">1</div>
+                                <div class="text-white py-1">2</div>
+                                <!-- 3일: 부장님 생일 -->
+                                <div class="text-white py-1 bg-electricCyan/10 border border-electricCyan/40 rounded-lg relative group">
+                                    <span class="font-bold text-white">3</span>
+                                    <span class="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                                    <!-- Tooltip -->
+                                    <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover:block bg-red-600 text-white text-[10px] py-1 px-2 rounded font-bold whitespace-nowrap z-30">🎂 OOO부장 생일</span>
+                                </div>
+                                <div class="text-white py-1">4</div>
+                                <div class="text-white py-1">5</div>
+                                <div class="text-blue-400 py-1">6</div>
+
+                                <div class="text-red-500 py-1">7</div>
+                                <div class="text-white py-1">8</div>
+                                <!-- 9일: 1주차 화요일 정기회의 -->
+                                <div class="text-white py-1 bg-emerald-500/10 border border-emerald-500/40 rounded-lg relative group">
+                                    <span class="font-bold text-white">9</span>
+                                    <span class="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>
+                                    <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover:block bg-emerald-600 text-white text-[10px] py-1 px-2 rounded font-bold whitespace-nowrap z-30">💼 제1주차 정기회의</span>
+                                </div>
+                                <div class="text-white py-1">10</div>
+                                <div class="text-white py-1">11</div>
+                                <div class="text-white py-1">12</div>
+                                <div class="text-blue-400 py-1">13</div>
+
+                                <div class="text-red-500 py-1">14</div>
+                                <div class="text-white py-1">15</div>
+                                <div class="text-white py-1">16</div>
+                                <div class="text-white py-1">17</div>
+                                <div class="text-white py-1">18</div>
+                                <div class="text-white py-1">19</div>
+                                <div class="text-blue-400 py-1">20</div>
+
+                                <div class="text-red-500 py-1">21</div>
+                                <div class="text-white py-1">22</div>
+                                <!-- 23일: 3주차 화요일 정기회의 -->
+                                <div class="text-white py-1 bg-emerald-500/10 border border-emerald-500/40 rounded-lg relative group">
+                                    <span class="font-bold text-white">23</span>
+                                    <span class="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>
+                                    <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover:block bg-emerald-600 text-white text-[10px] py-1 px-2 rounded font-bold whitespace-nowrap z-30">💼 제3주차 정기회의</span>
+                                </div>
+                                <div class="text-white py-1">24</div>
+                                <!-- 25일: 야유회 -->
+                                <div class="text-white py-1 bg-amber-500/10 border border-amber-500/40 rounded-lg relative group">
+                                    <span class="font-bold text-white">25</span>
+                                    <span class="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-amber-400 rounded-full"></span>
+                                    <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover:block bg-amber-600 text-white text-[10px] py-1 px-2 rounded font-bold whitespace-nowrap z-30">⛺ 전사 야유회</span>
+                                </div>
+                                <div class="text-white py-1">26</div>
+                                <div class="text-blue-400 py-1">27</div>
+
+                                <div class="text-red-500 py-1">28</div>
+                                <div class="text-white py-1">29</div>
+                                <div class="text-white py-1">30</div>
+                                <div class="text-gray-700 py-1">1</div>
+                                <div class="text-gray-700 py-1">2</div>
+                                <div class="text-gray-700 py-1">3</div>
+                                <div class="text-gray-700 py-1">4</div>
+                            </div>
+
+                            <!-- 상세 피드 리스트 -->
+                            <div class="space-y-3 mt-4 border-t border-white/5 pt-4">
+                                <div class="flex items-center gap-3 text-xs">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0"></div>
+                                    <span class="text-gray-400 min-w-[70px]">화요일 (1,3주)</span>
+                                    <span class="text-white font-bold">임직원 주간 전사 정기 회의 (09:00)</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-xs">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-red-500 shrink-0"></div>
+                                    <span class="text-gray-400 min-w-[70px]">06. 03 (수)</span>
+                                    <span class="text-white font-bold">🎉 OOO 부장 생일 (사내 케이크 팅)</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-xs">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-amber-400 shrink-0"></div>
+                                    <span class="text-gray-400 min-w-[70px]">06. 25 (목)</span>
+                                    <span class="text-white font-bold">⛺ 2026년도 비에이텍 전사 힐링 야유회</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. 물 흐르는 파이프라인 타임라인 연혁 -->
+        <section id="history" class="max-w-5xl mx-auto px-6 scroll-mt-32 relative">
+            <div class="text-center max-w-3xl mx-auto mb-24">
+                <span class="px-4 py-1.5 bg-electricCyan/10 text-electricCyan border border-electricCyan/20 rounded-full text-xs font-bold font-outfit uppercase tracking-widest">History</span>
+                <h2 class="text-3xl md:text-5xl font-black text-white mt-6 mb-6 leading-tight">
+                    비에이텍이 <span class="text-electricCyan neon-glow">흘러온 발자취</span>
+                </h2>
+                <p class="text-gray-400 font-light">신뢰와 기술력 하나로 국가 수자원 인프라를 수놓은 역사의 증명입니다.</p>
+            </div>
+
+            <!-- Pipeline Timeline Container -->
+            <div class="relative min-h-[800px] pl-8 md:pl-0">
+                <!-- Vertical Pipe Line -->
+                <div class="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-[8px] bg-navy-800 rounded-full overflow-hidden z-0">
+                    <div id="pipe-water" class="absolute top-0 left-0 w-full bg-gradient-to-b from-electricCyan to-blue-600 rounded-full" style="height: 0%;"></div>
+                </div>
+
+                <!-- Timeline Item 1 -->
+                <div class="relative md:w-1/2 pr-0 md:pr-12 md:mr-auto mb-16 text-left md:text-right flex flex-col md:items-end items-start group timeline-node" data-percentage="20">
+                    <div class="absolute left-[-24px] md:left-auto md:right-[-12px] top-2 w-[24px] h-[24px] rounded-full bg-navy-950 border-4 border-navy-800 z-10 transition duration-500 group-hover:border-electricCyan group-hover:shadow-neon flex items-center justify-center timeline-dot">
+                        <div class="w-2.5 h-2.5 bg-gray-600 rounded-full timeline-dot-inner"></div>
+                    </div>
+                    <div class="glass-panel p-8 rounded-3xl border border-white/5 hover:border-electricCyan/20 transition-all duration-500 transform group-hover:translate-x-1 md:group-hover:-translate-x-1 w-full relative overflow-hidden">
+                        <span class="text-xs text-electricCyan font-bold tracking-widest font-outfit block mb-1">2010. 11. 01</span>
+                        <h4 class="text-xl font-bold text-white mb-2">(주)강원유체 설립</h4>
+                        <p class="text-sm text-gray-400 font-light leading-relaxed">
+                            춘천에서 모터펌프 설계 및 조립 제조 기반의 '(주)강원유체' 법인을 공식 출범하여 수처리 시장에 첫 발을 내딛었습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="relative md:w-1/2 pl-0 md:pl-12 md:ml-auto mb-16 text-left flex flex-col items-start group timeline-node" data-percentage="45">
+                    <div class="absolute left-[-24px] md:left-[-12px] top-2 w-[24px] h-[24px] rounded-full bg-navy-950 border-4 border-navy-800 z-10 transition duration-500 group-hover:border-electricCyan group-hover:shadow-neon flex items-center justify-center timeline-dot">
+                        <div class="w-2.5 h-2.5 bg-gray-600 rounded-full timeline-dot-inner"></div>
+                    </div>
+                    <div class="glass-panel p-8 rounded-3xl border border-white/5 hover:border-electricCyan/20 transition-all duration-500 transform group-hover:translate-x-1 w-full relative overflow-hidden">
+                        <span class="text-xs text-electricCyan font-bold tracking-widest font-outfit block mb-1">2010. 12</span>
+                        <h4 class="text-xl font-bold text-white mb-2">벤처기업인증 획득</h4>
+                        <p class="text-sm text-gray-400 font-light leading-relaxed">
+                            중소기업청으로부터 혁신적 기술 성장 잠재력을 인정받아 공식 '벤처기업' 인증을 최초 획득하였습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="relative md:w-1/2 pr-0 md:pr-12 md:mr-auto mb-16 text-left md:text-right flex flex-col md:items-end items-start group timeline-node" data-percentage="70">
+                    <div class="absolute left-[-24px] md:left-auto md:right-[-12px] top-2 w-[24px] h-[24px] rounded-full bg-navy-950 border-4 border-navy-800 z-10 transition duration-500 group-hover:border-electricCyan group-hover:shadow-neon flex items-center justify-center timeline-dot">
+                        <div class="w-2.5 h-2.5 bg-gray-600 rounded-full timeline-dot-inner"></div>
+                    </div>
+                    <div class="glass-panel p-8 rounded-3xl border border-white/5 hover:border-electricCyan/20 transition-all duration-500 transform group-hover:translate-x-1 md:group-hover:-translate-x-1 w-full relative overflow-hidden">
+                        <span class="text-xs text-electricCyan font-bold tracking-widest font-outfit block mb-1">2019. 07</span>
+                        <h4 class="text-xl font-bold text-white mb-2">비에이텍(주) 상호 변경</h4>
+                        <p class="text-sm text-gray-400 font-light leading-relaxed">
+                            글로벌 첨단 기술 도약을 선언하고 상호를 '(주)강원유체'에서 '비에이텍(주)'으로 변경하였으며, 대표이사 조세연 체제를 구축하여 스마트 펌프 개발 역량을 집중 강화하기 시작했습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 4 -->
+                <div class="relative md:w-1/2 pl-0 md:pl-12 md:ml-auto mb-8 text-left flex flex-col items-start group timeline-node" data-percentage="100">
+                    <div class="absolute left-[-24px] md:left-[-12px] top-2 w-[24px] h-[24px] rounded-full bg-navy-950 border-4 border-navy-800 z-10 transition duration-500 group-hover:border-electricCyan group-hover:shadow-neon flex items-center justify-center timeline-dot">
+                        <div class="w-2.5 h-2.5 bg-gray-600 rounded-full timeline-dot-inner"></div>
+                    </div>
+                    <div class="glass-panel p-8 rounded-3xl border border-white/5 hover:border-electricCyan/20 transition-all duration-500 transform group-hover:translate-x-1 w-full relative overflow-hidden">
+                        <span class="text-xs text-electricCyan font-bold tracking-widest font-outfit block mb-1">2029 (지명원 수치 기준)</span>
+                        <h4 class="text-xl font-bold text-white mb-2">강원도지사 표창 수상</h4>
+                        <p class="text-sm text-gray-400 font-light leading-relaxed">
+                            친환경 고효율 수처리 펌프 보급 공로 및 지역 경제 일자리 창출 활성화 기여에 대한 공로로 강원도지사 공식 표창장을 수여 받았습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. 주요 사업 실적 -->
+        <section id="performance" class="max-w-7xl mx-auto px-6 scroll-mt-32">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <span class="px-4 py-1.5 bg-electricCyan/10 text-electricCyan border border-electricCyan/20 rounded-full text-xs font-bold font-outfit uppercase tracking-widest">Performance Showcase</span>
+                    <h2 class="text-3xl md:text-5xl font-black text-white mt-6 mb-2 leading-tight">
+                        공공기관이 선택한 <br class="sm:hidden"><span class="text-electricCyan neon-glow">비에이텍 실적</span>
+                    </h2>
+                    <p class="text-gray-400 font-light">엄격한 기준과 조달 제약을 극복하고 관공서 및 군부대에 대량 납품한 주요 실적 현황입니다.</p>
+                </div>
+                <button onclick="openPdfModal(10)" class="bg-gradient-to-r from-neonBlue to-blue-600 hover:from-electricCyan hover:to-neonBlue text-white px-6 py-3.5 rounded-xl font-bold shadow-neon transition duration-300 flex items-center gap-2 transform hover:-translate-y-1">
+                    <i class="fa-solid fa-file-pdf"></i> 실적 전체 리스트 PDF (10p)
+                </button>
+            </div>
+
+            <!-- Table -->
+            <div class="glass-panel rounded-3xl overflow-hidden border border-white/5 shadow-2xl">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left min-w-[700px]">
+                        <thead>
+                            <tr class="bg-white/5 text-gray-300 border-b border-white/10 text-sm font-semibold uppercase tracking-wider">
+                                <th class="px-8 py-5">납품 / 발주처</th>
+                                <th class="px-8 py-5">주요 납품 내용 (펌프 장비 및 시공 내역)</th>
+                                <th class="px-8 py-5 text-right">지역</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 text-sm text-gray-300">
+                            <!-- R1 -->
+                            <tr class="hover:bg-white/[0.02] transition-colors">
+                                <td class="px-8 py-6 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-electricCyan/10 text-electricCyan flex items-center justify-center text-xs"><i class="fa-solid fa-landmark"></i></div>
+                                    <span class="font-bold text-white">홍천군청</span>
+                                </td>
+                                <td class="px-8 py-6 font-light leading-relaxed">
+                                    농업용수 안정 공급용 대용량 수류 취수 펌프, 농어촌공사 솔무치지구 관정 심정 수중 펌프 교체 및 납품 설치 완료
+                                </td>
+                                <td class="px-8 py-6 text-right"><span class="px-2 py-1 bg-white/5 text-gray-400 text-xs rounded-lg font-medium">강원 홍천</span></td>
+                            </tr>
+                            <!-- R2 -->
+                            <tr class="hover:bg-white/[0.02] transition-colors">
+                                <td class="px-8 py-6 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-electricCyan/10 text-electricCyan flex items-center justify-center text-xs"><i class="fa-solid fa-landmark"></i></div>
+                                    <span class="font-bold text-white">춘천시청</span>
+                                </td>
+                                <td class="px-8 py-6 font-light leading-relaxed">
+                                    도심 상수도 배관 가압 부스터 펌프 시스템 구축, 근화동 빗물 배수 유수지 특수 고진공 수중 펌프 납품 및 준공
+                                </td>
+                                <td class="px-8 py-6 text-right"><span class="px-2 py-1 bg-white/5 text-gray-400 text-xs rounded-lg font-medium">강원 춘천</span></td>
+                            </tr>
+                            <!-- R3 -->
+                            <tr class="hover:bg-white/[0.02] transition-colors">
+                                <td class="px-8 py-6 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-electricCyan/10 text-electricCyan flex items-center justify-center text-xs"><i class="fa-solid fa-landmark"></i></div>
+                                    <span class="font-bold text-white">철원군청</span>
+                                </td>
+                                <td class="px-8 py-6 font-light leading-relaxed">
+                                    철원군 하수관거 관로 수압 제어 수중 블랙스 및 슬러지 대형 오수 분쇄 펌프 설비 시공 시운전 성공
+                                </td>
+                                <td class="px-8 py-6 text-right"><span class="px-2 py-1 bg-white/5 text-gray-400 text-xs rounded-lg font-medium">강원 철원</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 11. Footer -->
+    <section class="bg-navy-950 border-t border-white/5 pt-24 pb-12 relative overflow-hidden">
+        <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-96 h-96 bg-neonBlue/5 rounded-full blur-[100px]"></div>
+        
+        <div class="max-w-4xl mx-auto px-6 text-center mb-24 relative z-10">
+            <span class="px-4 py-1.5 bg-electricCyan/10 text-electricCyan border border-electricCyan/20 rounded-full text-xs font-bold font-outfit uppercase tracking-widest animate-pulse">Documentation</span>
+            <h2 class="text-3xl md:text-5xl font-black text-white mt-6 mb-8 leading-tight">
+                비에이텍의 깊이 있는 정보를 <br>한 권에 담았습니다
+            </h2>
+            <button onclick="openBrochureModal()" class="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-emerald-500 text-white text-lg md:text-xl px-12 py-5 rounded-2xl font-bold shadow-neon-green transition duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3 mx-auto w-full sm:w-auto">
+                <i class="fa-solid fa-book-open"></i> 비에이텍 브로슈어 2면뷰어 열기
+            </button>
         </div>
-      </div>
-      <p class="text-gray-300 leading-relaxed text-sm mb-6">
-        <strong class="text-white">NotebookLM</strong>은 구글이 만든 AI 기반 문서 분석 도구입니다.
-        회사 소개서, 사업계획서, 제품 카탈로그 등을 업로드하면 AI가 내용을 완벽히 학습하고,
-        여러분의 질문에 <strong class="text-indigo-300">출처 기반으로 정확하게 답변</strong>합니다.
-        영업 자료 정리, 제안서 작성, 제품 설명 숙지에 즉시 활용 가능합니다.
-      </p>
-      <a href="https://notebooklm.google.com" target="_blank"
-         class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-6 py-3 rounded-xl transition text-sm">
-        <i class="fas fa-external-link-alt"></i> NotebookLM 바로가기
-      </a>
-    </div>
-
-    <!-- Steps -->
-    <h4 class="font-black text-gray-900 text-xl mb-6">📖 비에이텍 실무 활용법 — 5단계</h4>
-    <div class="space-y-4 mb-10">
-      <div class="flex items-start gap-4 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm">
-        <div class="step-badge">1</div>
-        <div><p class="font-black text-gray-900 mb-1">노트북 생성</p><p class="text-sm text-gray-600">notebooklm.google.com 접속 → <strong>"새 노트북"</strong> 클릭 → 노트북 이름 입력 (예: 비에이텍 영업자료)</p></div>
-      </div>
-      <div class="flex items-start gap-4 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm">
-        <div class="step-badge">2</div>
-        <div><p class="font-black text-gray-900 mb-1">소스 업로드</p><p class="text-sm text-gray-600">회사소개서(batechintro.pdf), 제품 카탈로그, 납품실적 등 PDF/DOCX를 <strong>드래그 앤 드롭</strong>으로 업로드합니다.</p></div>
-      </div>
-      <div class="flex items-start gap-4 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm">
-        <div class="step-badge">3</div>
-        <div><p class="font-black text-gray-900 mb-1">AI에게 질문하기</p><p class="text-sm text-gray-600">채팅창 예시: <em class="text-indigo-600 font-semibold">"부스터펌프 KC 인증 번호가 뭐야?"</em>, <em class="text-indigo-600 font-semibold">"춘천시 납품 실적 요약해줘"</em></p></div>
-      </div>
-      <div class="flex items-start gap-4 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm">
-        <div class="step-badge">4</div>
-        <div><p class="font-black text-gray-900 mb-1">오디오 요약 생성 (신기능!)</p><p class="text-sm text-gray-600"><strong>"Audio Overview"</strong> 클릭 → AI가 두 진행자가 토론하는 팟캐스트를 자동 생성합니다. 이동 중 청취 가능!</p></div>
-      </div>
-      <div class="flex items-start gap-4 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm">
-        <div class="step-badge">5</div>
-        <div><p class="font-black text-gray-900 mb-1">노트 & 공유</p><p class="text-sm text-gray-600">AI 답변을 <strong>노트로 저장</strong>하고 팀원과 링크로 공유하세요. 영업팀·기술팀이 같은 AI 비서를 함께 쓸 수 있습니다.</p></div>
-      </div>
-    </div>
-
-    <!-- Tips grid -->
-    <h4 class="font-black text-gray-900 text-xl mb-6">💡 추천 질문 모음</h4>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-      <div class="p-5 bg-indigo-50 rounded-2xl border border-indigo-100">
-        <p class="text-xs font-black text-indigo-500 uppercase tracking-widest mb-3">영업팀용</p>
-        <ul class="space-y-2 text-sm text-gray-700">
-          <li class="flex items-start gap-2"><span class="text-indigo-400 font-black">›</span>"ISO 인증 유효기간이 언제야?"</li>
-          <li class="flex items-start gap-2"><span class="text-indigo-400 font-black">›</span>"관공서 납품 실적 리스트 정리해줘"</li>
-          <li class="flex items-start gap-2"><span class="text-indigo-400 font-black">›</span>"부스터펌프 시스템 주요 특징 3가지는?"</li>
-        </ul>
-      </div>
-      <div class="p-5 bg-purple-50 rounded-2xl border border-purple-100">
-        <p class="text-xs font-black text-purple-500 uppercase tracking-widest mb-3">기술팀용</p>
-        <ul class="space-y-2 text-sm text-gray-700">
-          <li class="flex items-start gap-2"><span class="text-purple-400 font-black">›</span>"수중펌프와 슬러지펌프 차이점 설명해줘"</li>
-          <li class="flex items-start gap-2"><span class="text-purple-400 font-black">›</span>"직접생산 11종 품목 코드 목록 알려줘"</li>
-          <li class="flex items-start gap-2"><span class="text-purple-400 font-black">›</span>"KC 위생안전 인증 제품 범위는?"</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Weekly tip -->
-    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-6 text-white">
-      <div class="flex items-center gap-3 mb-3"><span class="text-2xl">⚡</span><span class="font-black text-sm tracking-widest uppercase">이번 주 꿀팁</span></div>
-      <p class="font-medium leading-relaxed text-sm">
-        NotebookLM에 <strong>여러 문서를 동시에 업로드</strong>하면 AI가 문서 간 연결 고리를 찾아줍니다.
-        납품실적 + 제품카탈로그 + 인증서를 함께 올린 뒤
-        <em>"철원군 납품에 사용된 펌프의 인증 현황은?"</em> 처럼 교차 질문해 보세요!
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════ -->
-<!--              FOOTER                    -->
-<!-- ═══════════════════════════════════════ -->
-<footer class="py-20 px-10 border-t border-gray-100">
-  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12">
-    <div>
-      <h4 style="font-family:'Orbitron',sans-serif;" class="text-3xl font-black mb-2"><span class="text-blue-600">BA</span>TECH</h4>
-      <p class="text-gray-400 font-medium text-sm">Advanced Pumping Solutions — Internal Portal</p>
-    </div>
-    <div class="text-gray-500 font-medium leading-relaxed text-sm">
-      <p class="font-black text-gray-900 mb-1">비에이텍 주식회사</p>
-      <p>강원특별자치도 춘천시 퇴계공단2길 64 (퇴계제2농공단지)</p>
-      <p>TEL: 033-264-9243 | FAX: 033-251-5747</p>
-      <p class="mt-6 text-xs font-bold text-gray-300">COPYRIGHT © 2025 BATECH. ALL RIGHTS RESERVED.</p>
-    </div>
-  </div>
-</footer>
-</main>
-
-<!-- ═══════════════════════════════════════ -->
-<!--          ji.pdf MODAL                  -->
-<!-- ═══════════════════════════════════════ -->
-<div id="jiModal" class="modal-overlay">
-  <div class="pdf-box">
-    <div class="bg-gray-50 px-6 py-4 flex justify-between items-center border-b border-gray-200">
-      <div class="flex items-center gap-4">
-        <span class="text-sm font-black text-gray-900">DOCUMENT VIEWER</span>
-        <div class="flex items-center gap-2 bg-white border rounded-xl px-3 py-1.5 text-xs font-bold">
-          <button onclick="jiChangePage(-1)" class="hover:text-blue-600 px-1"><i class="fas fa-chevron-left"></i></button>
-          <span id="jiPageNum"   class="w-8 text-center text-blue-600">1</span>
-          <span class="text-gray-300">/</span>
-          <span id="jiPageCount" class="w-8 text-center text-gray-400">–</span>
-          <button onclick="jiChangePage(1)"  class="hover:text-blue-600 px-1"><i class="fas fa-chevron-right"></i></button>
+        
+        <div class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500 text-xs relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+                <a href="#home" class="flex items-center gap-2 text-white font-bold text-lg">
+                    <i class="fa-solid fa-water text-electricCyan animate-pulse"></i>
+                    <span>비에이텍<span class="text-xs font-light ml-1 font-outfit text-gray-400">BA TECH</span></span>
+                </a>
+                <div class="leading-relaxed">
+                    <span class="font-semibold text-gray-300">비에이텍(주)</span> | 사업자번호: 221-81-42625 | 대표이사: 조세연<br>
+                    본사 및 공장: 강원 춘천시 퇴계공단2길 64 | Tel: (033) 264-9243 | Fax: (033) 251-5747
+                </div>
+            </div>
+            <div class="text-center md:text-right">
+                &copy; 2026 Blue Advanced Technology. All rights reserved.<br>
+                <span class="text-[10px] text-gray-600 mt-1 block">Designed & Engineered with premium web components.</span>
+            </div>
         </div>
-      </div>
-      <button onclick="closeJiPdf()" class="text-3xl text-gray-300 hover:text-gray-900">&times;</button>
+    </section>
+
+    <!-- 12. PDF Modal Viewer (지명원 전체 뷰어) -->
+    <div id="pdf-modal" class="fixed inset-0 z-[100] hidden bg-navy-950/90 flex items-center justify-center p-2 sm:p-6 backdrop-blur-xl transition-all duration-300">
+        <div class="bg-navy-900/40 w-full max-w-5xl h-[95vh] rounded-3xl flex flex-col overflow-hidden border border-white/10 shadow-2xl relative backdrop-blur-md">
+            
+            <!-- Modal Header -->
+            <div class="bg-navy-950/80 px-6 py-4 flex justify-between items-center shrink-0 border-b border-white/5">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-electricCyan/10 text-electricCyan flex items-center justify-center text-sm"><i class="fa-solid fa-file-pdf"></i></div>
+                    <h3 class="font-extrabold text-white text-base tracking-wide flex items-center gap-1.5">
+                        비에이텍 지명원 뷰어 <span class="text-xs text-gray-500 font-light uppercase tracking-widest font-outfit hidden sm:inline">BA Tech PDF Viewer</span>
+                    </h3>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button onclick="closePdfModal()" class="w-8 h-8 rounded-lg bg-white/5 text-gray-400 hover:text-white hover:bg-red-500/20 transition flex items-center justify-center"><i class="fa-solid fa-xmark text-lg"></i></button>
+                </div>
+            </div>
+
+            <!-- Modal Toolbar -->
+            <div id="modal-toolbar" class="bg-navy-950/40 border-b border-white/5 px-6 py-3 flex justify-center items-center gap-4 shrink-0 shadow-sm z-10 hidden">
+                <button onclick="changePage(-1)" class="bg-white/5 border border-white/10 rounded-lg px-4 py-1.5 hover:bg-electricCyan hover:text-navy-950 text-white font-semibold text-xs transition duration-300"><i class="fa-solid fa-chevron-left"></i> 이전</button>
+                <span class="font-mono font-bold text-electricCyan text-xs min-w-[80px] text-center"><span id="page-num" class="text-white">1</span> / <span id="page-count">0</span></span>
+                <button onclick="changePage(1)" class="bg-white/5 border border-white/10 rounded-lg px-4 py-1.5 hover:bg-electricCyan hover:text-navy-950 text-white font-semibold text-xs transition duration-300">다음 <i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="pdf-loading" class="absolute inset-0 flex flex-col items-center justify-center bg-navy-950/80 z-0">
+                <i class="fa-solid fa-spinner fa-spin text-5xl text-electricCyan mb-4 animate-spin"></i>
+                <p class="text-gray-400 font-bold text-sm">CORS 보안 가동 환경에서 지명원을 렌더링 중입니다...</p>
+            </div>
+
+            <!-- PDF Render Container -->
+            <div id="pdf-container" class="flex-1 overflow-auto bg-navy-950/50 p-4 sm:p-8 flex flex-col items-center relative z-0">
+                <!-- Canvases will be injected here -->
+            </div>
+            
+            <!-- Float Top Button -->
+            <button onclick="document.getElementById('pdf-container').scrollTo({top:0, behavior:'smooth'})" class="absolute bottom-6 right-6 bg-electricCyan text-navy-950 w-12 h-12 rounded-full shadow-neon flex items-center justify-center hover:bg-white hover:scale-110 transition duration-300 z-10">
+                <i class="fa-solid fa-arrow-up"></i>
+            </button>
+        </div>
     </div>
-    <div id="jiWrapper" class="flex-1 overflow-auto bg-gray-100 flex justify-center p-6 relative">
-      <div id="jiLoading" class="hidden absolute inset-0 bg-white/90 z-10 flex flex-col items-center justify-center">
-        <div class="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-3"></div>
-        <p class="text-xs font-black text-blue-600 tracking-widest">RENDERING...</p>
-      </div>
-      <canvas id="jiCanvas" class="shadow-2xl bg-white"></canvas>
+
+    <!-- 13. [신설] 2페이지 뷰어형 브로슈어 팝업 모달 (`batechintro.pdf`) -->
+    <div id="brochure-modal" class="fixed inset-0 z-[100] hidden bg-navy-950/95 flex items-center justify-center p-2 sm:p-6 backdrop-blur-xl transition-all duration-300">
+        <div class="bg-navy-900/40 w-full max-w-7xl h-[95vh] rounded-3xl flex flex-col overflow-hidden border border-white/10 shadow-2xl relative backdrop-blur-md">
+            
+            <!-- Modal Header -->
+            <div class="bg-navy-950/80 px-6 py-4 flex justify-between items-center shrink-0 border-b border-white/5">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-sm"><i class="fa-solid fa-book-open"></i></div>
+                    <h3 class="font-extrabold text-white text-base tracking-wide flex items-center gap-1.5">
+                        비에이텍 4면 브로슈어 뷰어 <span class="text-xs text-gray-500 font-light uppercase tracking-widest font-outfit hidden sm:inline">BA Tech 2-Page Dual View</span>
+                    </h3>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-xs text-gray-400 bg-white/5 px-3 py-1.5 rounded-lg border border-white/5">바탕화면 좌우 2면 자동 매칭</span>
+                    <button onclick="closeBrochureModal()" class="w-8 h-8 rounded-lg bg-white/5 text-gray-400 hover:text-white hover:bg-red-500/20 transition flex items-center justify-center"><i class="fa-solid fa-xmark text-lg"></i></button>
+                </div>
+            </div>
+
+            <!-- 듀얼 페이지 렌더링 프레임 구역 -->
+            <div class="flex-1 overflow-auto bg-navy-950/60 p-4 md:p-8 flex items-center justify-center">
+                <div class="flex flex-col md:flex-row gap-6 max-w-full justify-center items-center" id="brochure-dual-container">
+                    <!-- Left Page -->
+                    <div class="flex flex-col items-center">
+                        <span class="text-[10px] text-emerald-400 font-bold mb-2 font-outfit">LEFT PAGE</span>
+                        <div class="border border-white/10 rounded-xl overflow-hidden shadow-2xl" id="brochure-left-frame">
+                            <iframe src="batechintro.pdf#page=1&zoom=70" class="w-[340px] h-[480px] md:w-[500px] md:h-[680px] border-0 bg-white"></iframe>
+                        </div>
+                    </div>
+                    <!-- Right Page -->
+                    <div class="flex flex-col items-center">
+                        <span class="text-[10px] text-emerald-400 font-bold mb-2 font-outfit">RIGHT PAGE</span>
+                        <div class="border border-white/10 rounded-xl overflow-hidden shadow-2xl" id="brochure-right-frame">
+                            <iframe src="batechintro.pdf#page=2&zoom=70" class="w-[340px] h-[480px] md:w-[500px] md:h-[680px] border-0 bg-white"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 하단 듀얼 페이지 제어 툴바 -->
+            <div class="bg-navy-950/80 px-6 py-3 border-t border-white/5 flex justify-center items-center gap-6 shrink-0">
+                <button onclick="changeBrochurePages(1, 2)" class="bg-emerald-500 hover:bg-emerald-400 text-navy-950 text-xs px-4 py-2 rounded-xl font-bold transition">1-2 페이지 보기</button>
+                <button onclick="changeBrochurePages(3, 4)" class="bg-emerald-500 hover:bg-emerald-400 text-navy-950 text-xs px-4 py-2 rounded-xl font-bold transition">3-4 페이지 보기</button>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<!-- ═══════════════════════════════════════ -->
-<!--              SCRIPTS                   -->
-<!-- ═══════════════════════════════════════ -->
-<script>
-// ── Particles ──────────────────────────────────────────────────────────
-const container = document.getElementById('particle-container');
-for(let i=0;i<30;i++){
-  const p=document.createElement('div'); p.className='particle';
-  const s=Math.random()*8+2;
-  p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*20}s;animation-duration:${Math.random()*10+10}s;`;
-  container.appendChild(p);
-}
+    <!-- SCRIPT SECTION -->
+    <script>
+        // Initialize GSAP & ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
 
-// ── Products ────────────────────────────────────────────────────────────
-const pItems=[
-  {n:"다단벌류트펌프",    i:"fa-layer-group"},
-  {n:"단단벌류트펌프",    i:"fa-circle-nodes"},
-  {n:"양흡입벌류트펌프",  i:"fa-arrows-left-right"},
-  {n:"편흡입벌류트펌프",  i:"fa-arrow-right"},
-  {n:"수중펌프",          i:"fa-water"},
-  {n:"오수펌프",          i:"fa-recycle"},
-  {n:"슬러지펌프",        i:"fa-industry"},
-  {n:"심정용펌프",        i:"fa-arrow-down-long"},
-  {n:"정량펌프",          i:"fa-flask"},
-  {n:"전진공동펌프",      i:"fa-gear"},
-  {n:"부스터펌프시스템",  i:"fa-rocket"}
-];
-const pg=document.getElementById('p-grid');
-pItems.forEach(p=>{
-  pg.innerHTML+=`<div class="tech-card group"><div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-blue-600 group-hover:text-white transition duration-300"><i class="fas ${p.i}"></i></div><h5 class="text-lg font-black text-gray-900 mb-1">${p.n}</h5><p class="text-xs text-gray-400 font-medium">High efficiency performance</p></div>`;
-});
+        /* 1. Global Custom Cursor */
+        const cursor = document.getElementById('cursor');
+        const cursorFollower = document.getElementById('cursor-follower');
+        
+        if(window.innerWidth > 768) {
+            document.addEventListener('mousemove', (e) => {
+                gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
+                gsap.to(cursorFollower, { x: e.clientX, y: e.clientY, duration: 0.25 });
+            });
 
-// ── Credentials ─────────────────────────────────────────────────────────
-const cItems=[
-  {n:"ISO 9001:2015",    sub:"품질경영 인증서",         p:17},
-  {n:"KC 위생안전",       sub:"KCW-2025-0163",          p:19},
-  {n:"Main-Biz",         sub:"경영혁신형 중소기업",      p:21},
-  {n:"사업자등록증",      sub:"221-81-42625",            p:12},
-  {n:"공장등록증",        sub:"퇴계제2농공단지",         p:13},
-  {n:"직접생산확인",      sub:"11종 펌프류",             p:15}
-];
-const cg=document.getElementById('c-grid');
-cItems.forEach(c=>{
-  cg.innerHTML+=`<div onclick="openJiPdf(${c.p})" class="bg-white/5 border border-white/10 p-8 rounded-[2rem] hover:bg-blue-600/10 hover:border-blue-500/50 transition-all cursor-pointer group flex flex-col justify-between h-56"><div class="text-blue-500 text-3xl group-hover:scale-125 transition duration-500"><i class="fas fa-file-signature"></i></div><div><h5 class="text-white font-black text-lg mb-1">${c.n}</h5><p class="text-gray-500 text-xs mb-3">${c.sub}</p><div class="flex items-center gap-2 text-[10px] font-bold text-gray-500 uppercase tracking-widest group-hover:text-blue-400">View Document <i class="fas fa-arrow-right"></i></div></div></div>`;
-});
+            // Hover interactions
+            const interactables = document.querySelectorAll('a, button, input[type="range"], label, input[type="radio"]');
+            interactables.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    cursor.style.backgroundColor = '#ffffff';
+                    cursorFollower.style.width = '50px';
+                    cursorFollower.style.height = '50px';
+                    cursorFollower.style.borderColor = '#00F0FF';
+                });
+                item.addEventListener('mouseleave', () => {
+                    cursor.style.backgroundColor = '#00F0FF';
+                    cursorFollower.style.width = '36px';
+                    cursorFollower.style.height = '36px';
+                    cursorFollower.style.borderColor = 'rgba(0, 240, 255, 0.3)';
+                });
+            });
+        }
 
-// ── PDF.js setup ────────────────────────────────────────────────────────
-const pdfjsLib = window['pdfjs-dist/build/pdf'];
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        /* 2. Scroll Progress & Header blur on scroll */
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height);
+            document.getElementById('scroll-progress').style.transform = `scaleX(${scrolled})`;
 
-// ── ji.pdf modal viewer ─────────────────────────────────────────────────
-let jiDoc=null, jiPage=1, jiRendering=false;
-const jiCanvas=document.getElementById('jiCanvas');
-const jiCtx=jiCanvas.getContext('2d');
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.remove('bg-transparent', 'py-4');
+                header.classList.add('bg-navy-950/80', 'backdrop-blur-md', 'py-3', 'shadow-2xl');
+            } else {
+                header.classList.add('bg-transparent', 'py-4');
+                header.classList.remove('bg-navy-950/80', 'backdrop-blur-md', 'py-3', 'shadow-2xl');
+            }
+        });
 
-async function openJiPdf(page){
-  jiPage=page;
-  document.getElementById('jiModal').style.display='flex';
-  document.body.style.overflow='hidden';
-  if(!jiDoc){
-    try{
-      jiDoc=await pdfjsLib.getDocument('ji.pdf').promise;
-      document.getElementById('jiPageCount').textContent=jiDoc.numPages;
-    }catch(e){
-      document.getElementById('jiWrapper').innerHTML=`<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4rem;text-align:center"><i class="fas fa-file-circle-exclamation" style="font-size:3rem;color:#d1d5db;margin-bottom:1rem"></i><p style="font-weight:700;color:#6b7280">ji.pdf 파일을 찾을 수 없습니다</p><p style="font-size:.8rem;color:#9ca3af;margin-top:.5rem">파일을 같은 폴더에 놓고 웹 서버로 실행해 주세요</p></div>`;
-      return;
-    }
-  }
-  jiRenderPage(jiPage);
-}
-async function jiRenderPage(num){
-  if(jiRendering)return;
-  jiRendering=true;
-  document.getElementById('jiLoading').classList.remove('hidden');
-  try{
-    const page=await jiDoc.getPage(num);
-    const vp=page.getViewport({scale:window.innerWidth<768?1.0:1.6});
-    jiCanvas.width=vp.width; jiCanvas.height=vp.height;
-    await page.render({canvasContext:jiCtx,viewport:vp}).promise;
-  }catch(e){console.warn(e);}
-  jiRendering=false;
-  document.getElementById('jiLoading').classList.add('hidden');
-  document.getElementById('jiPageNum').textContent=num;
-}
-function jiChangePage(d){
-  if(!jiDoc)return;
-  const n=jiPage+d;
-  if(n>0&&n<=jiDoc.numPages){jiPage=n;jiRenderPage(jiPage);}
-}
-function closeJiPdf(){
-  document.getElementById('jiModal').style.display='none';
-  document.body.style.overflow='auto';
-}
+        /* 3. Magnetic Hover Cards Position */
+        const glowCards = document.querySelectorAll('.glow-card');
+        glowCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+            });
+        });
 
-// ── Brochure 2-page spread ──────────────────────────────────────────────
-let bDoc=null, bSpread=1, bScale=1.2, bRendering=false;
+        /* 4. GSAP Animations */
+        gsap.from('#home h1', { y: 40, opacity: 0, duration: 1, delay: 0.2, ease: 'power3.out' });
+        gsap.from('#home p', { y: 30, opacity: 0, duration: 1, delay: 0.5, ease: 'power3.out' });
+        gsap.from('#home .flex', { y: 20, opacity: 0, duration: 1, delay: 0.8, ease: 'power3.out' });
 
-async function initBrochure(){
-  try{
-    bDoc=await pdfjsLib.getDocument('batechintro.pdf').promise;
-    document.getElementById('bTotal').textContent=bDoc.numPages;
-    document.getElementById('brochure-loading').style.display='none';
-    document.getElementById('brochure-spread').style.display='flex';
-    bRenderSpread();
-  }catch(e){
-    document.getElementById('brochure-loading').style.display='none';
-    document.getElementById('brochure-error').style.display='flex';
-  }
-}
+        const counters = document.querySelectorAll('.counter-number');
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const isFloat = counter.getAttribute('data-target').includes('.');
+            
+            ScrollTrigger.create({
+                trigger: counter,
+                start: 'top 85%',
+                onEnter: () => {
+                    let start = 0;
+                    const duration = 1.5;
+                    const speed = target / (duration * 60);
+                    
+                    const updateCount = () => {
+                        start += speed;
+                        if(start < target) {
+                            counter.innerText = isFloat ? start.toFixed(1) : Math.floor(start);
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCount();
+                }
+            });
+        });
 
-async function bRenderSpread(){
-  if(!bDoc||bRendering)return;
-  bRendering=true;
-  const left=bSpread, right=bSpread+1;
-  document.getElementById('bPageNum').textContent=left;
-  document.getElementById('bPageNum2').textContent=right<=bDoc.numPages?right:'–';
-  document.getElementById('bZoom').textContent=Math.round(bScale*100)+'%';
-  const wrap=document.getElementById('brochure-spread');
-  const halfW=Math.floor((wrap.offsetWidth-96)/2);
-  await bRenderPage(left,'canvas-left',halfW>200?halfW:400);
-  if(right<=bDoc.numPages){
-    await bRenderPage(right,'canvas-right',halfW>200?halfW:400);
-  } else {
-    const c=document.getElementById('canvas-right');
-    c.width=0; c.height=0;
-  }
-  bRendering=false;
-}
+        const timelineWater = document.getElementById('pipe-water');
+        gsap.to(timelineWater, {
+            height: '100%',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '#history',
+                start: 'top 40%',
+                end: 'bottom 60%',
+                scrub: true,
+            }
+        });
 
-async function bRenderPage(num,canvasId,maxW){
-  try{
-    const page=await bDoc.getPage(num);
-    const vp0=page.getViewport({scale:1});
-    const sc=(maxW/vp0.width)*bScale;
-    const vp=page.getViewport({scale:sc});
-    const c=document.getElementById(canvasId);
-    c.width=vp.width; c.height=vp.height;
-    await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;
-  }catch(e){console.warn(e);}
-}
+        const timelineNodes = document.querySelectorAll('.timeline-node');
+        timelineNodes.forEach(node => {
+            ScrollTrigger.create({
+                trigger: node,
+                start: 'top 60%',
+                onEnter: () => {
+                    node.querySelector('.timeline-dot').classList.add('border-electricCyan', 'shadow-neon');
+                    node.querySelector('.timeline-dot-inner').style.backgroundColor = '#00F0FF';
+                    gsap.fromTo(node.querySelector('.glass-panel'), 
+                        { borderColor: 'rgba(255, 255, 255, 0.05)', backgroundColor: 'rgba(255, 255, 255, 0.03)' },
+                        { borderColor: 'rgba(0, 240, 255, 0.25)', backgroundColor: 'rgba(255, 255, 255, 0.06)', duration: 0.8 }
+                    );
+                },
+                onLeaveBack: () => {
+                    node.querySelector('.timeline-dot').classList.remove('border-electricCyan', 'shadow-neon');
+                    node.querySelector('.timeline-dot-inner').style.backgroundColor = '#4b5563';
+                    gsap.to(node.querySelector('.glass-panel'), {
+                        borderColor: 'rgba(255, 255, 255, 0.05)',
+                        backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                        duration: 0.5
+                    });
+                }
+            });
+        });
 
-function brochurePrev(){
-  if(!bDoc)return;
-  bSpread=Math.max(1,bSpread-2);
-  bRenderSpread();
-}
-function brochureNext(){
-  if(!bDoc)return;
-  if(bSpread+2<=bDoc.numPages){bSpread+=2; bRenderSpread();}
-}
-function brochureZoom(d){
-  bScale=Math.max(0.5,Math.min(3,bScale+d));
-  bRenderSpread();
-}
+        gsap.utils.toArray('.glass-panel, .glow-card').forEach(panel => {
+            gsap.from(panel, {
+                scrollTrigger: {
+                    trigger: panel,
+                    start: 'top 90%',
+                    toggleActions: 'play none none none',
+                },
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power2.out'
+            });
+        });
 
-// ── Calendar ────────────────────────────────────────────────────────────
-function buildCalendar(){
-  const now=new Date();
-  const year=now.getFullYear(), month=now.getMonth();
-  document.getElementById('cal-title').textContent=`${year}년 ${month+1}월 일정`;
 
-  // 1st & 3rd Tuesday
-  const tuesdays=[];
-  for(let d=1;d<=31;d++){
-    const dt=new Date(year,month,d);
-    if(dt.getMonth()!==month)break;
-    if(dt.getDay()===2) tuesdays.push(d);
-  }
-  const t1=tuesdays[0], t3=tuesdays[2];
+        /* 5. Smart Pump Simulator Physics Engine Canvas (회전형 워터펌프 그래픽 요소 구현) */
+        const canvas = document.getElementById('flowCanvas');
+        const ctx = canvas.getContext('2d');
 
-  const events={};
-  const addEv=(d,ev)=>{ if(!events[d]) events[d]=[]; events[d].push(ev); };
-  if(t1) addEv(t1,{color:'blue', label:'🗓 정기회의'});
-  if(t3) addEv(t3,{color:'blue', label:'🗓 정기회의'});
-  addEv(3, {color:'pink',  label:'🎂 OOO부장 생일'});
-  addEv(25,{color:'green', label:'🏕 야유회'});
+        let particles = [];
+        let numParticles = 80;
 
-  const firstDay=new Date(year,month,1).getDay();
-  const daysInMonth=new Date(year,month+1,0).getDate();
-  const daysInPrev=new Date(year,month,0).getDate();
-  const today=now.getDate();
-  const grid=document.getElementById('cal-grid');
-  grid.innerHTML='';
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight || 350;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-  let cells=[];
-  for(let i=firstDay-1;i>=0;i--) cells.push({d:daysInPrev-i,cur:false});
-  for(let d=1;d<=daysInMonth;d++) cells.push({d,cur:true});
-  while(cells.length%7!==0) cells.push({d:cells.length-daysInMonth-firstDay+1,cur:false});
+        class Particle {
+            constructor() {
+                this.reset();
+                this.x = Math.random() * canvas.width;
+            }
+            reset() {
+                this.y = canvas.height * 0.5 + (Math.random() * 24 - 12);
+                this.x = 0;
+                this.size = Math.random() * 3 + 1.5;
+                this.alpha = Math.random() * 0.5 + 0.3;
+            }
+            update(speed) {
+                this.x += speed;
+                if(this.x > canvas.width) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 240, 255, ${this.alpha})`;
+                ctx.fill();
+            }
+        }
 
-  cells.forEach((cell,idx)=>{
-    const isToday=cell.cur&&cell.d===today;
-    const isSun=idx%7===0, isSat=idx%7===6;
-    const ev=cell.cur&&events[cell.d]?events[cell.d]:[];
-    const div=document.createElement('div');
-    div.className='cal-day'+(isToday?' today':'')+(cell.cur?'':' other-month');
-    const dayColor=isSun?'#f87171':isSat?'#60a5fa':'#374151';
-    let evHtml=ev.map(e=>`<div class="cal-event" style="background:${e.color==='blue'?'#dbeafe':e.color==='pink'?'#fce7f3':'#dcfce7'};color:${e.color==='blue'?'#1d4ed8':e.color==='pink'?'#be185d':'#15803d'}">${e.label}</div>`).join('');
-    div.innerHTML=`<div style="font-weight:900;font-size:.75rem;margin-bottom:.15rem;color:${dayColor}">${cell.d}</div>${evHtml}`;
-    grid.appendChild(div);
-  });
+        for(let i = 0; i < numParticles; i++) {
+            particles.push(new Particle());
+        }
 
-  // Upcoming list
-  const days=['일','월','화','수','목','금','토'];
-  const list=document.getElementById('event-list');
-  const allEv=[];
-  if(t1) allEv.push({d:t1,color:'blue', label:'정기회의 (1주차 화요일)',icon:'🗓'});
-  allEv.push(     {d:3, color:'pink',  label:'OOO부장 생일 🎂',        icon:'🎂'});
-  if(t3) allEv.push({d:t3,color:'blue', label:'정기회의 (3주차 화요일)',icon:'🗓'});
-  allEv.push(     {d:25,color:'green', label:'야유회 🏕',               icon:'🏕'});
-  allEv.sort((a,b)=>a.d-b.d);
-  allEv.forEach(ev=>{
-    const dt=new Date(year,month,ev.d);
-    const bg=ev.color==='blue'?'#eff6ff':ev.color==='pink'?'#fdf2f8':'#f0fdf4';
-    const tc=ev.color==='blue'?'#1d4ed8':ev.color==='pink'?'#be185d':'#15803d';
-    const todayBadge=ev.d===today?`<span style="margin-left:auto;font-size:.7rem;font-weight:900;color:#16a34a;background:#f0fdf4;padding:.2rem .75rem;border-radius:9999px">오늘</span>`:'';
-    list.innerHTML+=`<div style="display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;background:#fff;border-radius:1rem;border:1px solid #f1f5f9;box-shadow:0 1px 4px rgba(0,0,0,.05)"><div style="width:2.75rem;height:2.75rem;background:${bg};color:${tc};border-radius:.75rem;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">${ev.icon}</div><div style="flex:1"><p style="font-weight:900;font-size:.875rem;color:#111827">${ev.label}</p><p style="font-size:.75rem;color:#9ca3af">${year}년 ${month+1}월 ${ev.d}일 (${days[dt.getDay()]})</p></div>${todayBadge}</div>`;
-  });
-}
+        const sliderFreq = document.getElementById('slider-freq');
+        const sliderPress = document.getElementById('slider-press');
+        const displayFreq = document.getElementById('val-freq');
+        const displayPress = document.getElementById('val-press');
 
-// ── Sidebar & scroll sync ───────────────────────────────────────────────
-function toggleSidebar(){
-  document.getElementById('sidebar').classList.toggle('active');
-}
-window.addEventListener('scroll',()=>{
-  const secs=['home','about','history','products','certs','video','cardnews','brochure','calendar','aitips'];
-  let cur='home';
-  secs.forEach(id=>{const s=document.getElementById(id);if(s&&window.scrollY>=s.offsetTop-300)cur=id;});
-  document.querySelectorAll('.nav-item').forEach(item=>{
-    item.classList.remove('active');
-    if(item.getAttribute('href')==='#'+cur) item.classList.add('active');
-  });
-});
+        const flowDisplay = document.getElementById('flow-display');
+        const metricPower = document.getElementById('metric-power');
+        const metricSaving = document.getElementById('metric-saving');
+        const sysStatus = document.getElementById('sys-status');
+        const alertZone = document.getElementById('alert-zone');
+        const overloadOverlay = document.getElementById('overload-overlay');
+        const overloadWarning = document.getElementById('overload-warning');
 
-// ── Init on load ────────────────────────────────────────────────────────
-window.addEventListener('DOMContentLoaded',()=>{
-  initBrochure();
-  buildCalendar();
-});
-</script>
+        function updateSimulator() {
+            const freq = parseFloat(sliderFreq.value);
+            const press = parseFloat(sliderPress.value);
+
+            displayFreq.textContent = `${freq} Hz`;
+            displayPress.textContent = `${press} Bar`;
+
+            const baseFlow = (freq / 60) * 500;
+            const actualFlow = Math.max(10, Math.floor(baseFlow - (press * 15)));
+            flowDisplay.textContent = actualFlow;
+
+            const efficiency = 0.85;
+            const freqRatio = freq / 60;
+            const cubedPower = 11 * Math.pow(freqRatio, 3) * (press / 5);
+            const finalPower = Math.max(0.8, cubedPower).toFixed(1);
+            metricPower.textContent = `${finalPower} kW`;
+
+            const defaultEquivalentPower = 11.2 * (press / 5);
+            const savingRate = Math.max(0, (((defaultEquivalentPower - parseFloat(finalPower)) / defaultEquivalentPower) * 100)).toFixed(1);
+            metricSaving.textContent = `${savingRate}%`;
+
+            if (press >= 7.5) {
+                sysStatus.innerHTML = `<span class="w-2.5 h-2.5 bg-red-500 rounded-full animate-ping"></span> <span class="text-red-500">배관 과부하 위험!</span>`;
+                overloadOverlay.style.opacity = 1;
+                overloadWarning.classList.remove('hidden');
+                alertZone.classList.add('border-red-500/30', 'bg-red-500/5');
+            } else {
+                sysStatus.innerHTML = `<span class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-ping"></span> 안정 운전 중`;
+                overloadOverlay.style.opacity = 0;
+                overloadWarning.classList.add('hidden');
+                alertZone.classList.remove('border-red-500/30', 'bg-red-500/5');
+            }
+        }
+
+        sliderFreq.addEventListener('input', updateSimulator);
+        sliderPress.addEventListener('input', updateSimulator);
+        updateSimulator();
+
+        // 캔버스 내부에 실제 주파수 비례 동적 펌프 회전 렌더링 엔진 구축
+        function animateSimulator() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 파이프 배경
+            ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+            ctx.lineWidth = 40;
+            ctx.lineCap = 'round';
+            ctx.beginPath();
+            ctx.moveTo(0, canvas.height * 0.5);
+            ctx.lineTo(canvas.width, canvas.height * 0.5);
+            ctx.stroke();
+
+            const pressVal = parseFloat(sliderPress.value);
+            ctx.strokeStyle = pressVal >= 7.5 ? 'rgba(239, 68, 68, 0.25)' : 'rgba(0, 240, 255, 0.1)';
+            ctx.lineWidth = 30;
+            ctx.stroke();
+
+            // 펌프 외장 쉴드 원 그리기
+            ctx.fillStyle = '#0A0F1D';
+            ctx.strokeStyle = pressVal >= 7.5 ? '#ef4444' : '#00F0FF';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(canvas.width * 0.5, canvas.height * 0.5, 45, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+
+            // 펌프 임펠러 내부 가이드선
+            ctx.strokeStyle = 'rgba(0, 240, 255, 0.15)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(canvas.width * 0.5, canvas.height * 0.5, 35, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // 주파수에 완벽 동기화되는 펌프 날개(Impeller Blade) 회전각 계산
+            const freqVal = parseFloat(sliderFreq.value);
+            ctx.save();
+            ctx.translate(canvas.width * 0.5, canvas.height * 0.5);
+            ctx.rotate(Date.now() * 0.0003 * freqVal); // 날개 회전각 연동
+            
+            // 6개의 임펠러 날개 렌더링
+            ctx.strokeStyle = '#00F0FF';
+            ctx.lineWidth = 4;
+            ctx.lineCap = 'round';
+            for(let i=0; i<6; i++) {
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                // 입체적인 워터제트형 날개 곡률
+                ctx.quadraticCurveTo(15, 12, 32, 5);
+                ctx.stroke();
+                ctx.rotate(Math.PI / 3);
+            }
+
+            // 모터 축 중심 베어링 실크스크린
+            ctx.fillStyle = '#111827';
+            ctx.strokeStyle = '#90E0EF';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(0, 0, 8, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+            ctx.restore();
+
+            // 주파수 속도에 맞춘 유체 수류 파티클 연동
+            const particleSpeed = (freqVal / 60) * 12 + 1;
+            particles.forEach(p => {
+                p.update(particleSpeed);
+                p.draw();
+            });
+
+            requestAnimationFrame(animateSimulator);
+        }
+        animateSimulator();
+
+
+        /* 6. PDF.js CORE MODAL VIEWER SYSTEM (Base64 CORS 우회 로딩) */
+        const modal = document.getElementById('pdf-modal');
+        const pdfContainer = document.getElementById('pdf-container');
+        const loadingIndicator = document.getElementById('pdf-loading');
+        const toolbar = document.getElementById('modal-toolbar');
+        
+        let pdfDoc = null;
+        let isPdfLoaded = false;
+
+        function getPdfDataArray() {
+            if(typeof jiPdfBase64 === 'undefined') return null;
+            const raw = window.atob(jiPdfBase64);
+            const uint8Array = new Uint8Array(raw.length);
+            for (let i = 0; i < raw.length; i++) {
+                uint8Array[i] = raw.charCodeAt(i);
+            }
+            return uint8Array;
+        }
+
+        async function renderPdfPage(pageNum, isSingleMode) {
+            const page = await pdfDoc.getPage(pageNum);
+            const containerWidth = pdfContainer.clientWidth - 40; 
+            const unscaledViewport = page.getViewport({ scale: 1.0 });
+            const scale = Math.min(1.5, containerWidth / unscaledViewport.width);
+            const viewport = page.getViewport({ scale: scale });
+
+            const canvas = document.createElement('canvas');
+            canvas.className = 'bg-white shadow-2xl mb-6 max-w-full rounded-lg';
+            canvas.id = `canvas-page-${pageNum}`;
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            pdfContainer.appendChild(canvas);
+
+            await page.render({
+                canvasContext: canvas.getContext('2d'),
+                viewport: viewport
+            }).promise;
+        }
+
+        async function renderAllPages() {
+            pdfContainer.innerHTML = '';
+            for(let i = 1; i <= pdfDoc.numPages; i++) {
+                await renderPdfPage(i, false);
+            }
+            loadingIndicator.style.display = 'none';
+        }
+
+        let currMode = 'all';
+        let currSinglePage = 1;
+
+        async function initPdfDoc() {
+            if (isPdfLoaded) return true;
+            try {
+                const dataArray = getPdfDataArray();
+                if(!dataArray) {
+                    alert('지명원 PDF 데이터를 불러오지 못했습니다. 데이터 파일(/public/pdfs/ji_data.js)을 확인해 주세요.');
+                    return false;
+                }
+                pdfDoc = await pdfjsLib.getDocument({ data: dataArray }).promise;
+                document.getElementById('page-count').textContent = pdfDoc.numPages;
+                isPdfLoaded = true;
+                return true;
+            } catch (err) {
+                console.error("PDF 초기화 실패", err);
+                alert('PDF 렌더링 중 시스템 오류가 발생했습니다.');
+                return false;
+            }
+        }
+
+        async function openPdfModal(targetPage) {
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            loadingIndicator.style.display = 'flex';
+            toolbar.classList.add('hidden');
+            pdfContainer.innerHTML = '';
+
+            const success = await initPdfDoc();
+            if(!success) {
+                loadingIndicator.style.display = 'none';
+                return;
+            }
+
+            currMode = targetPage;
+
+            if (targetPage === 'all') {
+                toolbar.classList.add('hidden');
+                await renderAllPages();
+            } else {
+                toolbar.classList.remove('hidden');
+                currSinglePage = parseInt(targetPage);
+                document.getElementById('page-num').textContent = currSinglePage;
+                await renderPdfPage(currSinglePage, true);
+                loadingIndicator.style.display = 'none';
+            }
+        }
+
+        async function changePage(offset) {
+            if(currMode === 'all') return;
+            const newPage = currSinglePage + offset;
+            if(newPage >= 1 && newPage <= pdfDoc.numPages) {
+                currSinglePage = newPage;
+                document.getElementById('page-num').textContent = currSinglePage;
+                
+                loadingIndicator.style.display = 'flex';
+                pdfContainer.innerHTML = '';
+                await renderPdfPage(currSinglePage, true);
+                loadingIndicator.style.display = 'none';
+            }
+        }
+
+        function closePdfModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            pdfContainer.innerHTML = '';
+        }
+
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) closePdfModal();
+        });
+
+
+        /* 7. [신설] 2페이지 듀얼 뷰어형 브로슈어 제어 메커니즘 (`batechintro.pdf`) */
+        const brochureModal = document.getElementById('brochure-modal');
+        const brochureLeftFrame = document.getElementById('brochure-left-frame');
+        const brochureRightFrame = document.getElementById('brochure-right-frame');
+
+        function openBrochureModal() {
+            brochureModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            // 초기 1-2페이지 활성화
+            changeBrochurePages(1, 2);
+        }
+
+        function closeBrochureModal() {
+            brochureModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeBrochurePages(leftPage, rightPage) {
+            // pdf#page 파라미터를 사용하여 해당 페이지로 포커싱된 뷰 포트 구현
+            brochureLeftFrame.innerHTML = `<iframe src="batechintro.pdf#page=${leftPage}&zoom=70" class="w-[340px] h-[480px] md:w-[500px] md:h-[680px] border-0 bg-white"></iframe>`;
+            brochureRightFrame.innerHTML = `<iframe src="batechintro.pdf#page=${rightPage}&zoom=70" class="w-[340px] h-[480px] md:w-[500px] md:h-[680px] border-0 bg-white"></iframe>`;
+        }
+
+        // 모달 영역 외 클릭 시 닫기
+        brochureModal.addEventListener('click', (e) => {
+            if(e.target === brochureModal) closeBrochureModal();
+        });
+    </script>
 </body>
 </html>
